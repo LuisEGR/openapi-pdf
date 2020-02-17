@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap"
+        rel="stylesheet">
+
+    <!-- <link rel="stylesheet"
+        href="https://mocks.betpalace.mx/css/an-old-hope.css"> -->
+    <script src="https://mocks.betpalace.mx/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+
+        .hljs {
+            display: block;
+            overflow-x: auto;
+            padding: 0.5em;
+            color: #333;
+            background: #eceff1;
+            padding: 20px;
+            border: 2px dashed #9c9c9c;
+
+        }
+
+        .hljs-comment,
+        .hljs-quote {
+            color: #998;
+            font-style: italic;
+        }
+
+        .hljs-keyword,
+        .hljs-selector-tag,
+        .hljs-subst {
+            color: #333;
+            font-weight: bold;
+        }
+
+        .hljs-number,
+        .hljs-literal,
+        .hljs-variable,
+        .hljs-template-variable,
+        .hljs-tag .hljs-attr {
+            color: #008080;
+        }
+
+        .hljs-string,
+        .hljs-doctag {
+            color: #3f51b5;
+        }
+
+        .hljs-title,
+        .hljs-section,
+        .hljs-selector-id {
+            color: #900;
+            font-weight: bold;
+        }
+
+        .hljs-subst {
+            font-weight: normal;
+        }
+
+        .hljs-type,
+        .hljs-class .hljs-title {
+            color: #458;
+            font-weight: bold;
+        }
+
+        .hljs-tag,
+        .hljs-name,
+        .hljs-attribute {
+            color: #000080;
+            font-weight: normal;
+        }
+
+        .hljs-regexp,
+        .hljs-link {
+            color: #009926;
+        }
+
+        .hljs-symbol,
+        .hljs-bullet {
+            color: #990073;
+        }
+
+        .hljs-built_in,
+        .hljs-builtin-name {
+            color: #0086b3;
+        }
+
+        .hljs-meta {
+            color: #999;
+            font-weight: bold;
+        }
+
+        .hljs-deletion {
+            background: #fdd;
+        }
+
+        .hljs-addition {
+            background: #dfd;
+        }
+
+        .hljs-emphasis {
+            font-style: italic;
+        }
+
+        .hljs-strong {
+            font-weight: bold;
+        }
+    </style>
+
+    <style>
+        table {
+            page-break-inside: auto
+        }
+
+        tr {
+            page-break-inside: avoid;
+            page-break-after: auto
+        }
+
+        .example {
+            page-break-inside: avoid;
+            page-break-after: auto
+        }
+
+        pre {
+            margin-top: 0;
+        }
+
+        thead {
+            display: table-header-group
+        }
+
+        tfoot {
+            display: table-footer-group
+        }
+
+        body {
+            /* padding: 50px; */
+            font-size: 10pt;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+
+        table.definition-response {
+            width: 100%;
+            max-width: 100%;
+            table-layout: fixed;
+            border-spacing: 0;
+            border-collapse: collapse;
+        }
+
+        table.definition {
+            width: 100%;
+            max-width: 100%;
+            table-layout: fixed;
+            border-spacing: 0;
+            border-collapse: collapse;
+        }
+
+        table.definition > thead {
+            background: #80cbc4;
+        }
+
+        table.definition-response>thead {
+            background: #80cbc4;
+        }
+
+        table.definition-response td:nth-child(1) {
+            vertical-align: top;
+        }
+
+        table.definition-response td:nth-child(1),
+        table.definition-response th:nth-child(1) {
+            width: 30%;
+        }
+
+        table.definition-response td:nth-child(2),
+        table.definition-response th:nth-child(2) {
+            width: 14%;
+            text-align: center;
+        }
+
+        table.definition-response td:nth-child(3),
+        table.definition-response th:nth-child(3) {
+            width: 6%;
+            text-align: center;
+        }
+
+        table.definition-response td:nth-child(4),
+        table.definition-response th:nth-child(4) {
+            width: 50%;
+        }
+
+
+        table.noborder {
+            border-spacing: 0;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+
+
+        td,
+        th {
+            padding: 5px;
+            text-overflow: ellipsis;
+            border: 1px solid #9c9c9c;
+        }
+
+        td,
+        th {
+            padding: 5px;
+            text-overflow: ellipsis;
+            border: 1px solid #9c9c9c;
+            word-wrap: break-word;
+        }
+
+
+
+        .title-api {
+            margin-bottom: 0;
+            text-transform: uppercase;
+        }
+
+        .endpoint-api {
+            font-size: 12pt;
+            margin: 0;
+        }
+
+        .endpoint-api span:nth-child(1) {
+            font-weight: bolder;
+            text-transform: uppercase;
+        }
+
+        .endpoint-api span:nth-child(2) {
+            font-family: monospace;
+        }
+    </style>
+    <style type="text/css"
+        media="print">
+        a[href]:after {
+            content: none !important;
+        }
+
+        @page {
+            size: auto;
+            /* auto is the initial value */
+            /* margin: 0mm; */
+            margin: 20mm;
+            /* this affects the margin in the printer settings */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>{{title}} <small>{{version}}</small></h1>
+
+
+
+</body>
+
+</html>

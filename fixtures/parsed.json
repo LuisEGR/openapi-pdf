@@ -1,0 +1,3185 @@
+{
+  "title": "Casino Palace API",
+  "version": "0.0.6",
+  "apis": [
+    {
+      "endpoint": "/ambit/savePayment",
+      "method": "post",
+      "summary": "Registro de pago en caja",
+      "description": "Servicio que permitirá realizar un registro de pago en caja para alimentos y bebidas.",
+      "tags": [
+        "AMBIT"
+      ],
+      "requestSchema": {
+        "title": "cajaRequest",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "numeroOrden",
+              "type": "double",
+              "description": "Categoria a la que pertenece el producto."
+            },
+            {
+              "title": "monto",
+              "type": "numeric",
+              "description": "Monto de la orden."
+            },
+            {
+              "title": "pagado",
+              "type": "boolean",
+              "description": "Este campo aplica solo si ambit requiera una comfirmación de pago."
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "title": "cajaResponse",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "message",
+              "type": "string",
+              "description": "Mensaje de respuesta del servicio."
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"numeroOrden\": 1990,\n    \"monto\": 60,\n    \"pagado\": true\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"message\": \"El pago se realizó de manera exitosa.\"\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/ambit/createOrder",
+      "method": "post",
+      "summary": "Creación de comanda",
+      "description": "Servicio que permitirá realizar una creación de comanda para alimentos y bebidas.",
+      "tags": [
+        "AMBIT"
+      ],
+      "requestSchema": {
+        "title": "comandaRequest",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "productos",
+              "type": "Array",
+              "description": "Listado de productos"
+            },
+            {
+              "title": "monto",
+              "type": "Double",
+              "description": "Valor total de la comanda"
+            },
+            {
+              "title": "areaEntrega",
+              "type": "string",
+              "description": "Lugar en el que será entregado el pedido"
+            },
+            {
+              "title": "numeroMesa",
+              "type": "numeric",
+              "description": "Numero de mesa o maquina en la se entregará el pedido"
+            },
+            {
+              "title": "categoria",
+              "type": "string",
+              "description": "Categoria a la que pertenece el producto"
+            },
+            {
+              "title": "nombre",
+              "type": "string",
+              "description": "Nombre del producto"
+            },
+            {
+              "title": "descripcion",
+              "type": "string",
+              "description": "Descripcion deproducto"
+            },
+            {
+              "title": "costo",
+              "type": "Double",
+              "description": "Costo del producto"
+            },
+            {
+              "title": "cantidad",
+              "type": "numeric",
+              "description": "Cantidad de unidades del producto"
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "title": "comandaResponse",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "numeroOrden",
+              "type": "numeric",
+              "description": "Número de orden."
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"productos\": [\n        {\n            \"categoria\": \"bebidas\",\n            \"nombre\": \"cocacola\",\n            \"descripcion\": \" cocacola de lata\",\n            \"costo\": 30,\n            \"cantidad\": 1\n        },\n        {\n            \"categoria\": \"desayunos\",\n            \"nombre\": \"enchiladas verdas\",\n            \"descripcion\": \"enchiladas verdes con pollo\",\n            \"costo\": 30,\n            \"cantidad\": 1\n        }\n    ],\n    \"monto\": 60,\n    \"areaEntrega\": \"Maquinas\",\n    \"numeroMesa\": 36\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"numeroOrden\": 1990\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/ambit/getmenu",
+      "method": "get",
+      "summary": "Obtención del menú",
+      "description": "Servicio que obtendrá el menú para alimentos y bebidas.",
+      "tags": [
+        "AMBIT"
+      ],
+      "requestSchema": {
+        "properties": {
+          "parsed": [],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "title": "menuResponse",
+        "type": "array",
+        "description": "Listado de los productos del menú.",
+        "properties": {
+          "parsed": [],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [],
+      "responseExamples": [
+        {
+          "title": "menu",
+          "json": "[\n    {\n        \"categoria\": \"bebidas\",\n        \"nombre\": \"cocacola\",\n        \"descripcion\": \"cocacola de lata\",\n        \"costoCash\": 30,\n        \"costoPuntos\": 100\n    },\n    {\n        \"categoria\": \"desayunos\",\n        \"nombre\": \"enchiladas verdas\",\n        \"descripcion\": \"enchiladas verdes con pollo\",\n        \"costoCash\": 30,\n        \"costoPuntos\": 100\n    }\n]"
+        }
+      ]
+    },
+    {
+      "endpoint": "/updateProfile",
+      "method": "post",
+      "summary": "Actualización de perfil",
+      "description": "Servicio web que permite actualizar la información de perfil del usuario.",
+      "tags": [
+        "PERFIL"
+      ],
+      "requestSchema": {
+        "title": "cajaRequest",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "cuenta",
+              "type": "string",
+              "description": "Este campo pertenece al numero de cuenta perteneciente al usuario."
+            },
+            {
+              "title": "nombre",
+              "type": "string",
+              "description": "Nombre del usuario para actualizar."
+            },
+            {
+              "title": "apellidos",
+              "type": "string",
+              "description": "Apellidos del usuario a actualizar."
+            },
+            {
+              "title": "telefono",
+              "type": "string",
+              "description": "Telefono del usuario a actuaizar."
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "properties": {
+          "parsed": [],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"cuenta\": \"1234567890\",\n    \"nombre\": \"Jose Luis\",\n    \"apellidos\": \"Cruz Diaz\",\n    \"telefono\": \"1234567890\"\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"message\": \"Los datos se actualizaron de forma correcta\"\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/getInfoProfile",
+      "method": "post",
+      "summary": "Informción de perfil",
+      "description": "Servicio web que permite obtener la información de perfil del usuario.",
+      "tags": [
+        "PERFIL"
+      ],
+      "requestSchema": {
+        "title": "cajaRequest",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "cuenta",
+              "type": "string",
+              "description": "Este campo pertenece al numero de cuenta perteneciente al usuario."
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "properties": {
+          "parsed": [],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"cuenta\": \"1234567890\"\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"nombre\": \"f4d309020e699d38db16e8159fb96996d3c9fabc6063c87b91c0781f6bd8bc08\",\n    \"apellidos\": \"1a94ff58caebef8212d9fd74fb30b759b192dee6a6fc1359a6d60f3996d103ed\",\n    \"telefono\": \"d42eef75ae77aed89d426dbb6d832173d63c545e4f415f522b12f3418fab3eac\",\n    \"genero\": \"f9a1d5e8c1c2981fb24e6b9f34a5eab1d9cc14582935cfa5e5ac4634cfbc6ec3\",\n    \"fechaNacimiento\": \"ce9185cdde9d2c41e4a2c6c88071c3892919cea1be3228267a17ebb0aaab222d\",\n    \"email\": \"6684f6deef8a7be57376f0ea75adc65d7ab0655c1f69387c9e49be46a1542151\",\n    \"usuario\": \"a5411edf929a4b91171dcd49699386f3be77036560b3af2a57f5bbc99ca6f8f1\",\n    \"password\": \"8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92\",\n    \"foto\": \"https://www.google.com/imagen \"\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/obtenerInfoCliente",
+      "method": "post",
+      "summary": "Información General",
+      "description": "Servicio web que permite obtener los datos generales del cliente.",
+      "tags": [
+        "DASHBOARD"
+      ],
+      "requestSchema": {
+        "title": "informaciongeneral",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "numeroTarjeta",
+              "type": "string",
+              "description": "Listado de productos"
+            },
+            {
+              "title": "titular",
+              "type": "string",
+              "description": "Valor total de la comanda"
+            },
+            {
+              "title": "puntosNivel",
+              "type": "numeric",
+              "description": "Lugar en el que será entregado el pedido"
+            },
+            {
+              "title": "puntosCanje",
+              "type": "numeric",
+              "description": "Numero de mesa o maquina en la se entregará el pedido"
+            },
+            {
+              "title": "creditoRedimibles",
+              "type": "numeric",
+              "description": "Categoria a la que pertenece el producto"
+            },
+            {
+              "title": "bloqueo",
+              "type": "boolean",
+              "description": "Nombre del producto"
+            },
+            {
+              "title": "ultimaActividad",
+              "type": "datetime",
+              "description": "Descripcion deproducto"
+            },
+            {
+              "title": "genero",
+              "type": "string",
+              "description": "Costo del producto"
+            },
+            {
+              "title": "fechaNacimiento",
+              "type": "date",
+              "description": "Cantidad de unidades del producto"
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "properties": {
+          "parsed": [],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"numeroCuenta\": \"91595049\"\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"numeroTarjeta\": \"09665311021257204004\",\n    \"titular\": \"Pedro Hernández Pérez\",\n    \"puntosNivel\": 11000,\n    \"puntosCanje\": 500,\n    \"creditoRedimibles\": 200,\n    \"bloqueo\": true,\n    \"ultimaActividad\": \"21/12/2019\",\n    \"genero\": \"M\",\n    \"fechaNacimiento\": \"19/03/1990\"\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/movimientosCliente",
+      "method": "post",
+      "summary": "ovimiento del cliente",
+      "description": "Obtener los movimiento del cliente registrados en el sistema Wigos.",
+      "tags": [
+        "DASHBOARD"
+      ],
+      "requestSchema": {
+        "title": "movimientosrequest",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "numeroTarjeta",
+              "type": "string",
+              "description": "Numero de cuenta"
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "properties": {
+          "parsed": [],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"numeroCuenta\": \"91595049\"\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"movimientos\": [\n        {\n            \"fecha\": \"19/12/2019 00:00:00\",\n            \"movimiento\": \"Sesión iniciada\",\n            \"tipoMovimiento\": 1,\n            \"saldoInicial\": 23000,\n            \"saldoFinal\": 23000\n        },\n        {\n            \"fecha\": \"20/12/2019 02:00:00\",\n            \"movimiento\": \"Sesión terminada\",\n            \"tipoMovimiento\": 2,\n            \"saldoInicial\": 23000,\n            \"saldoFinal\": 19000\n        }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/promociones",
+      "method": "post",
+      "summary": "Promociones",
+      "description": "Obtener datos generales de las promociones mediante filtros por medio del sistema Wigos",
+      "tags": [
+        "DASHBOARD"
+      ],
+      "requestSchema": {
+        "title": "promocionesPartidas",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "numeroTarjeta",
+              "type": "string",
+              "description": "Numero de cuenta"
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "properties": {
+          "parsed": [],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"numeroCuenta\": \"91595049\"\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"promociones\": [\n        {\n            \"inicio\": \"19/12/2019 00:00:00\",\n            \"fin\": \"22/12/2019 23:59:59\",\n            \"nombrePromocion\": \"Kiosko 100 SNR\",\n            \"tipoCredito\": 1,\n            \"estado\": true,\n            \"vip\": false\n        },\n        {\n            \"inicio\": \"19/12/2019 00:00:00\",\n            \"fin\": \"22/12/2019 23:59:59\",\n            \"nombrePromocion\": \"Kiosko 200 SNR\",\n            \"tipoCredito\": 2,\n            \"estado\": true,\n            \"vip\": false\n        }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/obtenerPuntos",
+      "method": "post",
+      "summary": "Puntos de nivel y puntos de canje",
+      "description": "permite obtener los puntos de nivel y puntos de canje registrados en el sistema Wigos",
+      "tags": [
+        "DASHBOARD"
+      ],
+      "requestSchema": {
+        "title": "puntosNivelPuntosCanje",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "numeroTarjeta",
+              "type": "string",
+              "description": "Numero de cuenta"
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "properties": {
+          "parsed": [],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"numeroCuenta\": \"91595049\"\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"puntosNivel\": 1200,\n    \"puntosCanje\": 2100\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/obtenerSaldos",
+      "method": "post",
+      "summary": "Obtener saldos redimibles y no redimibles",
+      "description": "Devuelve el saldo del cliente ",
+      "tags": [
+        "DASHBOARD"
+      ],
+      "requestSchema": {
+        "title": "saldosRedimiblesSaldosNoRedimibles",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "numeroTarjeta",
+              "type": "string",
+              "description": "Numero de cuenta"
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "properties": {
+          "parsed": [],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"numeroCuenta\": \"91595049\"\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"saldoRedimible\": 1200,\n    \"saldoNoRedimible\": 200\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/redemptionPoints",
+      "method": "post",
+      "summary": "Canje de puntos",
+      "description": "Permite reducir el número de puntos alojados en el sistema Wigos e ingresar concepto del canje.",
+      "tags": [
+        "WIGOS"
+      ],
+      "requestSchema": {
+        "title": "canjePuntos",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "numeroCuenta",
+              "type": "string",
+              "description": "Traducido en WIGOS como “Número”."
+            },
+            {
+              "title": "puntosCanje",
+              "type": "numeric",
+              "description": "Cantidad de puntos canje que se redimirán de la cuenta."
+            },
+            {
+              "title": "concepto",
+              "type": "string",
+              "description": "Descripción del cargo de puntos."
+            },
+            {
+              "title": "producto",
+              "type": "string",
+              "description": "Productos/Servicio por el cuál se redimen los puntos."
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "properties": {
+          "parsed": [],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"numeroCuenta\": \"99595049\",\n    \"puntosCanje\": 100,\n    \"concepto\": \"Compra de promoción\",\n    \"producto\": \"Bolsa\"\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"puntosCanje\": 300,\n    \"codigo\": \"200\"\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/balanceCharge",
+      "method": "post",
+      "summary": "Carga de saldo",
+      "description": "permite aumentar el valor de “Saldo” a un cliente en el sistema Wigos.",
+      "tags": [
+        "WIGOS"
+      ],
+      "requestSchema": {
+        "title": "cargaSaldo",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "numeroCuenta",
+              "type": "string",
+              "description": "Traducido en WIGOS como “Número”."
+            },
+            {
+              "title": "monto",
+              "type": "numeric",
+              "description": "Cantidad por la que se hace el cargo."
+            },
+            {
+              "title": "concepto",
+              "type": "string",
+              "description": "Descripción del cargo de puntos."
+            },
+            {
+              "title": "referencia",
+              "type": "string",
+              "description": "Número de referencia de la transacción."
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "properties": {
+          "parsed": [],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"numeroCuenta\": \"99595049\",\n    \"monto\": 5000,\n    \"concepto\": \"Carga MyPalaceApp\",\n    \"referencia\": \"983264501\"\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"saldo\": 5500,\n    \"codigo\": \"200\"\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/buyTickets",
+      "method": "post",
+      "summary": "Compra de tickets",
+      "description": "permite redimir puntos del Wigos y generar Tickets/Series por promoción.",
+      "tags": [
+        "WIGOS"
+      ],
+      "requestSchema": {
+        "title": "compraTickets",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "numeroCuenta",
+              "type": "string",
+              "description": "Traducido en WIGOS como “Número”."
+            },
+            {
+              "title": "idSorteo",
+              "type": "numeric",
+              "description": "Identificador único del sorteo."
+            },
+            {
+              "title": "cantidad",
+              "type": "numeric",
+              "description": "Cantidad de tickets comprados."
+            },
+            {
+              "title": "puntos",
+              "type": "numeric",
+              "description": "Total de puntos gastados."
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "properties": {
+          "parsed": [],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"numeroCuenta\": \"91595049\",\n    \"idSorteo\": 1234,\n    \"cantidad\": 4,\n    \"puntos\": 200\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"idTicket\": 12345,\n    \"idSorteo\": 12345,\n    \"folios\": [\n        \"12345\",\n        \"12346\",\n        \"12347\",\n        \"12348\"\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/countPromotionsCustomer",
+      "method": "post",
+      "summary": "Conteo partidas (sorteos y promociones)",
+      "description": "permite obtener el conteo de las promociones y sorteos generales excluyendo las genéricas por cliente registradas en el sistema Wigos.",
+      "tags": [
+        "WIGOS"
+      ],
+      "requestSchema": {
+        "title": "contenoSorteosPromociones",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "numeroCuenta",
+              "type": "string",
+              "description": "Traducido en WIGOS como “Número”."
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "properties": {
+          "parsed": [],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"numeroCuenta\": \"91595049\"\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"conteo\": 8\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/detailCoupon",
+      "method": "post",
+      "summary": "Detalle de promoción (cupones)",
+      "description": "permite obtener los datos generales de la promoción seleccionada, registrada en el sistema Wigos.",
+      "tags": [
+        "WIGOS"
+      ],
+      "requestSchema": {
+        "title": "detalleCupon",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "id",
+              "type": "numeric",
+              "description": "Identificador único de la promoción almacenada en Wigos."
+            },
+            {
+              "title": "inicio",
+              "type": "string",
+              "description": "Obtenido de la consulta “Promociones”, con el nombre de “Inicio”."
+            },
+            {
+              "title": "fin",
+              "type": "string",
+              "description": "Obtenido de la consulta “Promociones”, con el nombre de “Fin”."
+            },
+            {
+              "title": "nombrePromocion ",
+              "type": "string",
+              "description": "Obtenido de la consulta “Promociones”, con el nombre de “Nombre”."
+            },
+            {
+              "title": "tipoCredito",
+              "type": "numeric",
+              "description": "1 siendo Redimibles, 2 siendo No Redimibles"
+            },
+            {
+              "title": "tipoTicket",
+              "type": "numeric",
+              "description": "1 siendo Ticket, 2 siendo Serie"
+            },
+            {
+              "title": "estado",
+              "type": "boolean",
+              "description": "True siendo Habilitada, False siendo Deshabilita"
+            },
+            {
+              "title": "vip",
+              "type": "boolean",
+              "description": "True siendo Habilitada, False siendo Deshabilita"
+            },
+            {
+              "title": "redimible",
+              "type": "numeric",
+              "description": "Cantidad de saldos redimibles o no redimibles que se obtienen."
+            },
+            {
+              "title": "puntos",
+              "type": "numeric",
+              "description": "Costo en puntos del cupón"
+            },
+            {
+              "title": "días",
+              "type": "string",
+              "description": "Días en los que aplica el cupón, se pone la inical del día separado por comas, la excepción es miércoles, se identifica con una X"
+            },
+            {
+              "title": "horarios",
+              "type": "Array",
+              "description": "Objeto array con los horarios disponibles"
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "properties": {
+          "parsed": [],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"idPromocion\": 1235\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"id\": 1234,\n    \"inicio\": \"19/12/2019 00:00:00\",\n    \"fin\": \"22/12/2019 23:59:59\",\n    \"nombrePromocion\": \"Kiosko 100 SNR\",\n    \"tipoCredito\": 1,\n    \"tipoTicket\": 1,\n    \"categoría\": \"\",\n    \"estado\": true,\n    \"vip\": false,\n    \"redimible\": 50,\n    \"puntos\": 100,\n    \"días\": \"L,X,V\",\n    \"horarios\": [\n        {\n            \"hora1\": \"10:30\",\n            \"hora2\": \"11:30\",\n            \"hora3\": \"12:30\",\n            \"hora4\": \"13:30\"\n        }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/validateCard",
+      "method": "post",
+      "summary": "2.- Validar número de tarjeta",
+      "description": "Servicio que valida el número de tarjera de un cliente.",
+      "tags": [
+        "WIGOS"
+      ],
+      "requestSchema": {
+        "title": "validateCard",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "numeroTarjeta",
+              "type": "string",
+              "description": "Número de tarjeta del cliente. Traducido en WIGOS como “Tarjeta”"
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "title": "validateCard",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "numeroCuenta",
+              "type": "string"
+            },
+            {
+              "title": "numeroTarjeta",
+              "type": "string"
+            },
+            {
+              "title": "nombre",
+              "type": "string"
+            },
+            {
+              "title": "fecha_nac",
+              "type": "string"
+            },
+            {
+              "title": "bloqueo",
+              "type": "boolean"
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"numeroTarjeta\": \"91595049\"\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"numeroCuenta\": \"99595049\",\n    \"numeroTarjeta\": \"09665311021257204004\",\n    \"nombre\": \"Juan Pérez\",\n    \"fecha_nacimiento\": \"01/01/1990\",\n    \"bloqueo\": true\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/validaTarjeta",
+      "method": "post",
+      "summary": "Validar número de tarjeta OWN",
+      "description": "Servicio que valida el número de tarjera de un cliente.",
+      "tags": [
+        "Llamadas a WIGOS"
+      ],
+      "requestSchema": {
+        "title": "validaTarjeta",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "numeroTarjeta",
+              "type": "string",
+              "description": "Número de tarjeta del cliente. Traducido en WIGOS como “Tarjeta”"
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "title": "validaTarjeta",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "numeroCuenta",
+              "type": "string"
+            },
+            {
+              "title": "numeroTarjeta",
+              "type": "string"
+            },
+            {
+              "title": "nombre",
+              "type": "string"
+            },
+            {
+              "title": "fecha_nac",
+              "type": "string"
+            },
+            {
+              "title": "bloqueo",
+              "type": "boolean"
+            },
+            {
+              "title": "registrada",
+              "type": "boolean"
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"numeroTarjeta\": \"9159504234234239\"\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"numeroCuenta\": \"99595049\",\n    \"numeroTarjeta\": \"09665311021257204004\",\n    \"nombre\": \"Juan Pérez\",\n    \"fecha_nacimiento\": \"01/01/1990\",\n    \"bloqueo\": true,\n    \"registrada\": false\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/GetRoom",
+      "method": "get",
+      "summary": "20.- Obtener la sala",
+      "description": "Servicio que obtiene el identificador de la sala a la que pertenece el número de tarjeta.",
+      "tags": [
+        "WIGOS"
+      ],
+      "requestSchema": {
+        "title": "obtenerSala",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "numeroTarjeta",
+              "type": "string",
+              "description": "Número de tarjeta del cliente. Traducido en WIGOS como “Tarjeta”"
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "title": "obtenerSala",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "sala",
+              "type": "numeric"
+            },
+            {
+              "title": "nombre",
+              "type": "string"
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"numeroTarjeta\": \"91595009325468098849\"\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "[\n    {\n        \"id\": \"1\",\n        \"nombre\": \"SalaDummy\",\n        \"alias\": \"SDummy\",\n        \"latitud\": \"19.4889129\",\n        \"longitud\": \"-99.227247\",\n        \"direccion\": \"Nivel PC, Blvrd Manuel Ávila Camacho 5, Residencial Lomas de Sotelo, 53390 Naucalpan de Juárez, Méx.\",\n        \"telefono\": \"4433232323\",\n        \"foto\": \"https://www.fullesports.com/wp-content/uploads/2018/11/legends-of-runaterra-riot-games.jpg\",\n        \"fb\": \"https://www.facebook.com/PokerRoomInsurgentes/\",\n        \"tw\": \"https://twitter.com/palace_casino\",\n        \"inst\": \"https://www.instagram.com/explore/locations/287398384/\"\n    },\n    {\n        \"id\": \"2\",\n        \"nombre\": \"SalaDummy2\",\n        \"alias\": \"SDummy\",\n        \"latitud\": \"19.4889129\",\n        \"longitud\": \"-99.227247\",\n        \"direccion\": \"Nivel PC, Blvrd Manuel Ávila Camacho 5, Residencial Lomas de Sotelo, 53390 Naucalpan de Juárez, Méx.\",\n        \"telefono\": \"4433232323\",\n        \"foto\": \"https://media.metrolatam.com/2019/11/08/rickandmorty-de95bcca445330a64570a444b973e6f9-800x400.jpg\",\n        \"fb\": \"https://www.facebook.com/PokerRoomInsurgentes/\",\n        \"tw\": \"https://twitter.com/palace_casino\",\n        \"inst\": \"https://www.instagram.com/explore/locations/287398384/\"\n    },\n    {\n        \"id\": \"3\",\n        \"nombre\": \"SalaDummy3\",\n        \"alias\": \"SDummy\",\n        \"latitud\": \"19.4889129\",\n        \"longitud\": \"-99.227247\",\n        \"direccion\": \"Nivel PC, Blvrd Manuel Ávila Camacho 5, Residencial Lomas de Sotelo, 53390 Naucalpan de Juárez, Méx.\",\n        \"telefono\": \"4433232323\",\n        \"foto\": \"https://www.shock.co/sites/default/files/content_files/2018_09/image_article/desencanto-resena-imagen-shock-que-serie-ver.jpg\",\n        \"fb\": \"https://www.facebook.com/PokerRoomInsurgentes/\",\n        \"tw\": \"https://twitter.com/palace_casino\",\n        \"inst\": \"https://www.instagram.com/explore/locations/287398384/\"\n    }\n]"
+        }
+      ]
+    },
+    {
+      "endpoint": "/updateRoom",
+      "method": "post",
+      "summary": "Cambio de sala",
+      "description": "Servicio para realizar el cambio de sala.",
+      "tags": [
+        "WIGOS"
+      ],
+      "requestSchema": {
+        "title": "cambioSala",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "IDUser",
+              "type": "string",
+              "description": "id de usuario”"
+            },
+            {
+              "title": "ultima_sala",
+              "type": "string",
+              "description": "id de sala”"
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "title": "obtenerSala",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "sala",
+              "type": "numeric"
+            },
+            {
+              "title": "nombre",
+              "type": "string"
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"ultima_sala\": \"3\"\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"IDUser\": \"1\",\n    \"ultima_sala\": \"3\"\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/GetInfoRoom/1",
+      "method": "get",
+      "summary": "Detalle de sala",
+      "description": "Servicio para realizar el cambio de sala.",
+      "tags": [
+        "WIGOS"
+      ],
+      "requestSchema": {
+        "title": "detalleSala",
+        "type": "object",
+        "properties": {
+          "parsed": [],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "title": "obtenerSala",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "sala",
+              "type": "numeric"
+            },
+            {
+              "title": "nombre",
+              "type": "string"
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "[\n    {\n        \"id_amenidad\": \"1\",\n        \"nombre\": \"ALIMENTOS Y BEBIDAS\",\n        \"foto\": \"https://res.cloudinary.com/hfdtviv2q/image/upload/v1579497303/alimentos_bebidas.png\",\n        \"fb\": \"https://www.facebook.com/PokerRoomInsurgentes/\",\n        \"tw\": \"https://twitter.com/palace_casino\",\n        \"inst\": \"https://www.instagram.com/explore/locations/287398384/\"\n    },\n    {\n        \"id_amenidad\": \"2\",\n        \"nombre\": \"JUEGO EN VIVO\",\n        \"foto\": \"https://res.cloudinary.com/hfdtviv2q/image/upload/v1579497303/juego_vivo.png\",\n        \"fb\": \"https://www.facebook.com/PokerRoomInsurgentes/\",\n        \"tw\": \"https://twitter.com/palace_casino\",\n        \"inst\": \"https://www.instagram.com/explore/locations/287398384/\"\n    },\n    {\n        \"id_amenidad\": \"4\",\n        \"nombre\": \"MAQUINAS\",\n        \"foto\": \"https://res.cloudinary.com/hfdtviv2q/image/upload/v1579497303/maquinas.png\",\n        \"fb\": \"https://www.facebook.com/PokerRoomInsurgentes/\",\n        \"tw\": \"https://twitter.com/palace_casino\",\n        \"inst\": \"https://www.instagram.com/explore/locations/287398384/\"\n    },\n    {\n        \"id_amenidad\": \"5\",\n        \"nombre\": \"SPORT BETS\",\n        \"foto\": \"https://res.cloudinary.com/hfdtviv2q/image/upload/v1579497059/sport_bets.png\",\n        \"fb\": \"https://www.facebook.com/PokerRoomInsurgentes/\",\n        \"tw\": \"https://twitter.com/palace_casino\",\n        \"inst\": \"https://www.instagram.com/explore/locations/287398384/\"\n    },\n    {\n        \"id_amenidad\": \"3\",\n        \"nombre\": \"CENTROS COMERCIALES \",\n        \"foto\": \"https://res.cloudinary.com/hfdtviv2q/image/upload/v1579500613/centros_comerciales.png\",\n        \"fb\": \"https://www.facebook.com/PokerRoomInsurgentes/\",\n        \"tw\": \"https://twitter.com/palace_casino\",\n        \"inst\": \"https://www.instagram.com/explore/locations/287398384/\"\n    }\n]"
+        }
+      ]
+    },
+    {
+      "endpoint": "/getSesionGame",
+      "method": "post",
+      "summary": "Sesión de juego",
+      "description": "permite obtener la sesión de juego del usuario en wigos.",
+      "tags": [
+        "WIGOS"
+      ],
+      "requestSchema": {
+        "title": "detalleCupon",
+        "type": "object",
+        "properties": {
+          "parsed": [],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "properties": {
+          "parsed": [],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"session\": true\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/player/promotions/v1/redeem_promotion",
+      "method": "post",
+      "summary": "Redencion promoción",
+      "description": "Este método permite canjear una promoción que está disponible para el jugador.",
+      "tags": [
+        "WIGOS"
+      ],
+      "requestSchema": {
+        "title": "RedeemPromotion",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "PromotionId",
+              "type": "String",
+              "description": "Identificación de la promoción"
+            },
+            {
+              "title": "AccountId",
+              "type": "numeric",
+              "description": "Identificador de cuenta de usuario"
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "properties": {
+          "parsed": [],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"PromotionId\": \"123344\",\n    \"AccountId\": 1111111\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"Result\": {\n        \"Success\": true\n    },\n    \"Balance\": 123344.55\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/generic/promotions/v1/get_players_promo_not_redeemed",
+      "method": "post",
+      "summary": "Promociones por canjear",
+      "description": "Este método permite obtener todos los jugadores que aún no han canjeado la promoción.",
+      "tags": [
+        "WIGOS"
+      ],
+      "requestSchema": {
+        "title": "GetPlayersPromoNotRedeemed",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "PromotionId",
+              "type": "String",
+              "description": "Identificación de la promoción"
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "properties": {
+          "parsed": [],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"PromotionId\": \"123344\"\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"Result\": {\n        \"Success\": true\n    },\n    \"Drawings\": [\n        {\n            \"AccountId\": 54343\n        },\n        {\n            \"AccountId\": 46143232\n        }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/player/drawings/v1/GetCouponsCount",
+      "method": "post",
+      "summary": "Obtener cupones del día del jugador",
+      "description": "Este método permite consultar la cantidad de cupones que un jugador puede obtener en el día de juego actual.",
+      "tags": [
+        "WIGOS"
+      ],
+      "requestSchema": {
+        "title": "GetCouponsCount",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "DrawingId",
+              "type": "numeric",
+              "description": "Identificación"
+            },
+            {
+              "title": "AccountId",
+              "type": "numeric",
+              "description": "Identificador de cuenta de usuario"
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "properties": {
+          "parsed": [],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"AccountId\": 1111111,\n    \"DrawingId\": 22222\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"Result\": {\n        \"Success\": true\n    },\n    \"Count\": 10\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/player/drawings/v1/request_coupons",
+      "method": "post",
+      "summary": "Recoger cupones",
+      "description": "Este método permite recoger los Cupones ganados en un sorteo.",
+      "tags": [
+        "WIGOS"
+      ],
+      "requestSchema": {
+        "title": "GetCouponsCount",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "DrawingId",
+              "type": "numeric",
+              "description": "Identificación"
+            },
+            {
+              "title": "AccountId",
+              "type": "numeric",
+              "description": "Identificador de cuenta de usuario"
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "properties": {
+          "parsed": [],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"AccountId\": 1111111,\n    \"DrawingId\": 22222\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"Result\": {\n        \"Success\": true\n    }\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/accounts/v1/get_account_info",
+      "method": "post",
+      "summary": "3.- Información del Usuario",
+      "description": "Servicio que permitirá obtener la información del usuario.",
+      "tags": [
+        "WIGOS"
+      ],
+      "requestSchema": {
+        "title": "getAccountInfoRequest",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "AccountId",
+              "type": "numeric",
+              "description": "Número de cuenta del usuario."
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "title": "getAccountInfoResponse",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "Result",
+              "type": "ResultObj"
+            },
+            {
+              "title": "Accounts",
+              "type": "Array[AccountsObj]"
+            }
+          ],
+          "nestedDefinitions": [
+            {
+              "title": "ResultObj",
+              "nestedObj": true,
+              "properties": [
+                {
+                  "title": "Success",
+                  "type": "boolean"
+                }
+              ]
+            },
+            {
+              "title": "PlayerTrackingObj",
+              "nestedObj": true,
+              "properties": [
+                {
+                  "title": "LevelCode",
+                  "type": "string"
+                },
+                {
+                  "title": "Level",
+                  "type": "string"
+                },
+                {
+                  "title": "LevelPoints",
+                  "type": "numeric"
+                },
+                {
+                  "title": "LevelPointsToNextLevel",
+                  "type": "numeric"
+                },
+                {
+                  "title": "PointBalance",
+                  "type": "numeric"
+                },
+                {
+                  "title": "PointsAvailable",
+                  "type": "numeric"
+                },
+                {
+                  "title": "NRBalance",
+                  "type": "numeric"
+                },
+                {
+                  "title": "REBalance",
+                  "type": "numeric"
+                },
+                {
+                  "title": "TotalBalance",
+                  "type": "numeric"
+                },
+                {
+                  "title": "LevelChange",
+                  "type": "boolean"
+                },
+                {
+                  "title": "CardChange",
+                  "type": "boolean"
+                }
+              ]
+            },
+            {
+              "title": "AccountsObj",
+              "properties": [
+                {
+                  "title": "AccountNumber",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Trackdata",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Name",
+                  "type": "string"
+                },
+                {
+                  "title": "FirstSurname",
+                  "type": "string"
+                },
+                {
+                  "title": "SecondSurname",
+                  "type": "string"
+                },
+                {
+                  "title": "Gender",
+                  "type": "string"
+                },
+                {
+                  "title": "BirthDate",
+                  "type": "string"
+                },
+                {
+                  "title": "PlayerTracking",
+                  "type": "PlayerTrackingObj"
+                },
+                {
+                  "title": "AccountBlocked",
+                  "type": "boolean"
+                },
+                {
+                  "title": "LastActivity",
+                  "type": "string"
+                },
+                {
+                  "title": "EnrollDate",
+                  "type": "string"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"AccountId\": 111111\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"Result\": {\n        \"Success\": true\n    },\n    \"Accounts\": [\n        {\n            \"AccountNumber\": 101212,\n            \"Trackdata\": 101010,\n            \"Name\": \"Peter\",\n            \"FirstSurname\": \"Smith\",\n            \"SecondSurname\": \"Tay\",\n            \"Gender\": \"M\",\n            \"BirthDate\": \"1978-08-12T00:00:00\",\n            \"PlayerTracking\": {\n                \"LevelCode\": \"LevelCode\",\n                \"Level\": \"Level\",\n                \"LevelPoints\": 1000,\n                \"LevelPointsToNextLevel\": 1500,\n                \"PointBalance\": 2000,\n                \"PointsAvailable\": 2500,\n                \"NRBalance\": 1000,\n                \"REBalance\": 1000,\n                \"TotalBalance\": 1000,\n                \"LevelChange\": false,\n                \"CardChange\": false\n            },\n            \"AccountBlocked\": false,\n            \"LastActivity\": \"2019-01-12T00:00:00\",\n            \"EnrollDate\": \"2018-05-13T00:00:00\"\n        }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/player/promotions/v1/get_promotions",
+      "method": "post",
+      "summary": "Obtener promociones por usuario",
+      "description": "Obtiene las promociones a las que el usuario tiene acceso.",
+      "tags": [
+        "WIGOS"
+      ],
+      "requestSchema": {
+        "title": "getUserPromotionsRequest",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "AccountId",
+              "type": "numeric",
+              "description": "Número de cuenta del usuario."
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "title": "getUserPromotionsResponse",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "Result",
+              "type": "ResultObj"
+            },
+            {
+              "title": "Trackdata",
+              "type": "numeric"
+            },
+            {
+              "title": "PromotionsList",
+              "type": "Array[PromotionsListObj]"
+            }
+          ],
+          "nestedDefinitions": [
+            {
+              "title": "ResultObj",
+              "nestedObj": true,
+              "properties": [
+                {
+                  "title": "Success",
+                  "type": "boolean"
+                }
+              ]
+            },
+            {
+              "title": "PromotionsListObj",
+              "properties": [
+                {
+                  "title": "Id",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Name",
+                  "type": "string"
+                },
+                {
+                  "title": "DateStart",
+                  "type": "string"
+                },
+                {
+                  "title": "DateEnd",
+                  "type": "string"
+                },
+                {
+                  "title": "CreditType",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Image",
+                  "type": "string"
+                },
+                {
+                  "title": "Amount",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Points",
+                  "type": "numeric"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"AccountId\": 111111\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"Result\": {\n        \"Success\": true\n    },\n    \"Trackdata\": \"123344\",\n    \"PromotionsList\": [\n        {\n            \"Id\": 1,\n            \"Name\": \"PromotionOne\",\n            \"DateStart\": \"2020-01-01T00:00:00\",\n            \"DateEnd\": \"2020-12-01T00:00:00\",\n            \"CreditType\": 1,\n            \"Image\": \"XALSHDFGLA4TBQ34BRHYBOAPSBHAFBOV…\",\n            \"Amount\": 0,\n            \"Points\": 15\n        },\n        {\n            \"Id\": 2,\n            \"Name\": \"PromotionTwo\",\n            \"DateStart\": \"2020-01-01T00:00:00\",\n            \"DateEnd\": \"2020-12-01T00:00:00\",\n            \"CreditType\": 2,\n            \"Image\": \"XALSHDFGLA4TBQ34BRHYBOAPSBHAFBOV…\",\n            \"Amount\": 2000.5,\n            \"Points\": 15\n        }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/generic/promotions/v1/get_promotions",
+      "method": "post",
+      "summary": "Obtener promociones por fechas",
+      "description": "Obtiene todas las promociones que se tienen habilitadas dentro de las fechas enviadas.",
+      "tags": [
+        "WIGOS"
+      ],
+      "requestSchema": {
+        "title": "getAllPromotionsRequest",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "DateStart",
+              "type": "string",
+              "description": "Fecha de inicio de las promociones."
+            },
+            {
+              "title": "DateEnd",
+              "type": "string",
+              "description": "Fecha de fin de las promociones."
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "title": "getAllPromotionsResponse",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "Result",
+              "type": "ResultObj"
+            },
+            {
+              "title": "Trackdata",
+              "type": "numeric"
+            },
+            {
+              "title": "PromotionsList",
+              "type": "Array[PromotionsListObj]"
+            }
+          ],
+          "nestedDefinitions": [
+            {
+              "title": "ResultObj",
+              "nestedObj": true,
+              "properties": [
+                {
+                  "title": "Success",
+                  "type": "boolean"
+                }
+              ]
+            },
+            {
+              "title": "PromotionsListObj",
+              "properties": [
+                {
+                  "title": "Id",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Name",
+                  "type": "string"
+                },
+                {
+                  "title": "DateStart",
+                  "type": "string"
+                },
+                {
+                  "title": "DateEnd",
+                  "type": "string"
+                },
+                {
+                  "title": "CreditType",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Image",
+                  "type": "string"
+                },
+                {
+                  "title": "Amount",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Points",
+                  "type": "numeric"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"DateStart\": \"2020-01-01T00:00:00\",\n    \"DateEnd\": \"2020-02-01T00:00:00\"\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"Result\": {\n        \"Success\": true\n    },\n    \"Trackdata\": \"123344\",\n    \"PromotionsList\": [\n        {\n            \"Id\": 1,\n            \"Name\": \"PromotionOne\",\n            \"DateStart\": \"2020-01-01T00:00:00\",\n            \"DateEnd\": \"2020-12-01T00:00:00\",\n            \"CreditType\": 1,\n            \"Image\": \"XALSHDFGLA4TBQ34BRHYBOAPSBHAFBOV…\",\n            \"Amount\": 0,\n            \"Points\": 15\n        },\n        {\n            \"Id\": 2,\n            \"Name\": \"PromotionTwo\",\n            \"DateStart\": \"2020-01-01T00:00:00\",\n            \"DateEnd\": \"2020-12-01T00:00:00\",\n            \"CreditType\": 2,\n            \"Image\": \"XALSHDFGLA4TBQ34BRHYBOAPSBHAFBOV…\",\n            \"Amount\": 2000.5,\n            \"Points\": 15\n        }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/generic/promotions/v1/get_configurable_promotions",
+      "method": "post",
+      "summary": "Obtener promociones << prefijo APP_ >>",
+      "description": "Obtiene las promociones que tienen el << prefijo APP_ >>",
+      "tags": [
+        "WIGOS"
+      ],
+      "requestSchema": {
+        "title": "getConfigurablePromotionsRequest",
+        "type": "object",
+        "properties": {
+          "parsed": [],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "title": "getConfigurablePromotionsResponse",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "Result",
+              "type": "ResultObj"
+            },
+            {
+              "title": "PromotionsList",
+              "type": "Array[PromotionsListObj]"
+            }
+          ],
+          "nestedDefinitions": [
+            {
+              "title": "ResultObj",
+              "nestedObj": true,
+              "properties": [
+                {
+                  "title": "Success",
+                  "type": "boolean"
+                }
+              ]
+            },
+            {
+              "title": "PromotionsListObj",
+              "properties": [
+                {
+                  "title": "Id",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Name",
+                  "type": "string"
+                },
+                {
+                  "title": "DateStart",
+                  "type": "string"
+                },
+                {
+                  "title": "DateEnd",
+                  "type": "string"
+                },
+                {
+                  "title": "CreditType",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Image",
+                  "type": "string"
+                },
+                {
+                  "title": "Amount",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Points",
+                  "type": "numeric"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"Result\": {\n        \"Success\": true\n    },\n    \"PromotionsList\": [\n        {\n            \"Id\": 1,\n            \"Name\": \"APP_PromotionOne\",\n            \"DateStart\": \"2020-01-01T00:00:00\",\n            \"DateEnd\": \"2020-12-01T00:00:00\",\n            \"CreditType\": 1,\n            \"Image\": \"XALSHDFGLA4TBQ34BRHYBOAPSBHAFBOV…\",\n            \"Amount\": 0,\n            \"Points\": 15\n        },\n        {\n            \"Id\": 2,\n            \"Name\": \"APP_PromotionTwo\",\n            \"DateStart\": \"2020-01-01T00:00:00\",\n            \"DateEnd\": \"2020-12-01T00:00:00\",\n            \"CreditType\": 2,\n            \"Image\": \"XALSHDFGLA4TBQ34BRHYBOAPSBHAFBOV…\",\n            \"Amount\": 2000.5,\n            \"Points\": 15\n        }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/player/drawings/v1/get_drawings",
+      "method": "post",
+      "summary": "Obtener partidas por usuario",
+      "description": "Obtiene las partidas a las que el usuario tiene acces.",
+      "tags": [
+        "WIGOS"
+      ],
+      "requestSchema": {
+        "title": "getUserDrawingsRequest",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "AccountId",
+              "type": "numeric",
+              "description": "Número de cuenta del usuario."
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "title": "getUserDrawingsResponse",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "Result",
+              "type": "ResultObj"
+            },
+            {
+              "title": "Drawings",
+              "type": "Array[DrawingsObj]"
+            }
+          ],
+          "nestedDefinitions": [
+            {
+              "title": "ResultObj",
+              "nestedObj": true,
+              "properties": [
+                {
+                  "title": "Success",
+                  "type": "boolean"
+                }
+              ]
+            },
+            {
+              "title": "DrawingsObj",
+              "properties": [
+                {
+                  "title": "Id",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Name",
+                  "type": "string"
+                },
+                {
+                  "title": "DateStart",
+                  "type": "string"
+                },
+                {
+                  "title": "DateEnd",
+                  "type": "string"
+                },
+                {
+                  "title": "Image",
+                  "type": "string"
+                },
+                {
+                  "title": "CreditType",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Price",
+                  "type": "string"
+                },
+                {
+                  "title": "BenefitGranted",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Level1Points",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Level2Points",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Level3Points",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Level4Points",
+                  "type": "numeric"
+                },
+                {
+                  "title": "OfferList",
+                  "type": "string"
+                },
+                {
+                  "title": "Observations",
+                  "type": "string"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"AccountId\": 111111\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"Result\": {\n        \"Success\": true\n    },\n    \"Drawings\": [\n        {\n            \"Id\": 1,\n            \"Name\": \"Drawing 1\",\n            \"DateStart\": \"2020-01-01T00:00:00\",\n            \"DateEnd\": \"2020-01-01T00:00:00\",\n            \"Image\": \"XALSHDFGLA4TBQ34BRHYBOAPSBHAFBOV…\",\n            \"Price\": 100,\n            \"CreditType\": 20,\n            \"BenefitGranted\": 2,\n            \"Level1Points\": 100,\n            \"Level2Points\": 80,\n            \"Level3Points\": 50,\n            \"Level4Points\": 20,\n            \"OfferList\": \"<DrawOfferList><DrawOffer><Key>030-00-00</Key><N>2</N><M>1</M><GenderFilter>0</GenderFilter></DrawOffer></DrawOfferList>\",\n            \"Observations\": \"Comments for the drawing\"\n        },\n        {\n            \"Id\": 2,\n            \"Name\": \"Drawing 2\",\n            \"DateStart\": \"2020-01-01T00:00:00\",\n            \"DateEnd\": \"2020-01-01T00:00:00\",\n            \"Image\": \"XALSHDFGLA4TBQ34BRHYBOAPSBHAFBOV…\",\n            \"Price\": 200,\n            \"CreditType\": 20,\n            \"BenefitGranted\": 1,\n            \"Level1Points\": 100,\n            \"Level2Points\": 80,\n            \"Level3Points\": 50,\n            \"Level4Points\": 20,\n            \"OfferList\": \"<DrawOfferList><DrawOffer><Key>030-00-00</Key><N>2</N><M>1</M><GenderFilter>0</GenderFilter></DrawOffer></DrawOfferList>\",\n            \"Observations\": \"Comments for the drawing\"\n        }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/generic/drawings/v1/get_drawings",
+      "method": "post",
+      "summary": "Obtener partidas por fechas",
+      "description": "Obtiene las todas las partidas que estén habilitadas dentro del rango de fechas.",
+      "tags": [
+        "WIGOS"
+      ],
+      "requestSchema": {
+        "title": "getAllDrawingsRequest",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "AccountId",
+              "type": "numeric",
+              "description": "Número de cuenta del usuario."
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "title": "getAllDrawingsResponse",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "Result",
+              "type": "ResultObj"
+            },
+            {
+              "title": "Drawings",
+              "type": "Array[DrawingsObj]"
+            }
+          ],
+          "nestedDefinitions": [
+            {
+              "title": "ResultObj",
+              "nestedObj": true,
+              "properties": [
+                {
+                  "title": "Success",
+                  "type": "boolean"
+                }
+              ]
+            },
+            {
+              "title": "DrawingsObj",
+              "properties": [
+                {
+                  "title": "Id",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Name",
+                  "type": "string"
+                },
+                {
+                  "title": "DateStart",
+                  "type": "string"
+                },
+                {
+                  "title": "DateEnd",
+                  "type": "string"
+                },
+                {
+                  "title": "Image",
+                  "type": "string"
+                },
+                {
+                  "title": "CreditType",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Price",
+                  "type": "string"
+                },
+                {
+                  "title": "BenefitGranted",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Level1Points",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Level2Points",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Level3Points",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Level4Points",
+                  "type": "numeric"
+                },
+                {
+                  "title": "OfferList",
+                  "type": "string"
+                },
+                {
+                  "title": "Observations",
+                  "type": "string"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"DateStart\": \"2020-01-01T00:00:00\",\n    \"DateEnd\": \"2020-02-01T00:00:00\"\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"Result\": {\n        \"Success\": true\n    },\n    \"Drawings\": [\n        {\n            \"Id\": 1,\n            \"Name\": \"Drawing 1\",\n            \"DateStart\": \"2020-01-01T00:00:00\",\n            \"DateEnd\": \"2020-01-01T00:00:00\",\n            \"Image\": \"XALSHDFGLA4TBQ34BRHYBOAPSBHAFBOV…\",\n            \"Price\": 100,\n            \"CreditType\": 20,\n            \"BenefitGranted\": 2,\n            \"Level1Points\": 100,\n            \"Level2Points\": 80,\n            \"Level3Points\": 50,\n            \"Level4Points\": 20,\n            \"OfferList\": \"<DrawOfferList><DrawOffer><Key>030-00-00</Key><N>2</N><M>1</M><GenderFilter>0</GenderFilter></DrawOffer></DrawOfferList>\",\n            \"Observations\": \"Comments for the drawing\"\n        },\n        {\n            \"Id\": 2,\n            \"Name\": \"Drawing 2\",\n            \"DateStart\": \"2020-01-01T00:00:00\",\n            \"DateEnd\": \"2020-01-01T00:00:00\",\n            \"Image\": \"XALSHDFGLA4TBQ34BRHYBOAPSBHAFBOV…\",\n            \"Price\": 200,\n            \"CreditType\": 20,\n            \"BenefitGranted\": 1,\n            \"Level1Points\": 100,\n            \"Level2Points\": 80,\n            \"Level3Points\": 50,\n            \"Level4Points\": 20,\n            \"OfferList\": \"<DrawOfferList><DrawOffer><Key>030-00-00</Key><N>2</N><M>1</M><GenderFilter>0</GenderFilter></DrawOffer></DrawOfferList>\",\n            \"Observations\": \"Comments for the drawing\"\n        }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/generic/drawings/v1/get_configurable_drawings",
+      "method": "post",
+      "summary": "Obtener partidas << APP_ >>",
+      "description": "Obtiene las todas las partidas que tengan el prefijo << APP_ >>",
+      "tags": [
+        "WIGOS"
+      ],
+      "requestSchema": {
+        "title": "getConfigurableDrawingsRequest",
+        "type": "object",
+        "properties": {
+          "parsed": [],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "title": "getConfigurableDrawingsResponse",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "Result",
+              "type": "ResultObj"
+            },
+            {
+              "title": "Drawings",
+              "type": "Array[DrawingsObj]"
+            }
+          ],
+          "nestedDefinitions": [
+            {
+              "title": "ResultObj",
+              "nestedObj": true,
+              "properties": [
+                {
+                  "title": "Success",
+                  "type": "boolean"
+                }
+              ]
+            },
+            {
+              "title": "DrawingsObj",
+              "properties": [
+                {
+                  "title": "Id",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Name",
+                  "type": "string"
+                },
+                {
+                  "title": "DateStart",
+                  "type": "string"
+                },
+                {
+                  "title": "DateEnd",
+                  "type": "string"
+                },
+                {
+                  "title": "Image",
+                  "type": "string"
+                },
+                {
+                  "title": "CreditType",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Price",
+                  "type": "string"
+                },
+                {
+                  "title": "BenefitGranted",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Level1Points",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Level2Points",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Level3Points",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Level4Points",
+                  "type": "numeric"
+                },
+                {
+                  "title": "OfferList",
+                  "type": "string"
+                },
+                {
+                  "title": "Observations",
+                  "type": "string"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"DateStart\": \"2020-01-01T00:00:00\",\n    \"DateEnd\": \"2020-02-01T00:00:00\"\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"Result\": {\n        \"Success\": true\n    },\n    \"Drawings\": [\n        {\n            \"Id\": 1,\n            \"Name\": \"Drawing 1\",\n            \"DateStart\": \"2020-01-01T00:00:00\",\n            \"DateEnd\": \"2020-01-01T00:00:00\",\n            \"Image\": \"XALSHDFGLA4TBQ34BRHYBOAPSBHAFBOV…\",\n            \"Price\": 100,\n            \"CreditType\": 20,\n            \"BenefitGranted\": 2,\n            \"Level1Points\": 100,\n            \"Level2Points\": 80,\n            \"Level3Points\": 50,\n            \"Level4Points\": 20,\n            \"OfferList\": \"<DrawOfferList><DrawOffer><Key>030-00-00</Key><N>2</N><M>1</M><GenderFilter>0</GenderFilter></DrawOffer></DrawOfferList>\",\n            \"Observations\": \"Comments for the drawing\"\n        },\n        {\n            \"Id\": 2,\n            \"Name\": \"Drawing 2\",\n            \"DateStart\": \"2020-01-01T00:00:00\",\n            \"DateEnd\": \"2020-01-01T00:00:00\",\n            \"Image\": \"XALSHDFGLA4TBQ34BRHYBOAPSBHAFBOV…\",\n            \"Price\": 200,\n            \"CreditType\": 20,\n            \"BenefitGranted\": 1,\n            \"Level1Points\": 100,\n            \"Level2Points\": 80,\n            \"Level3Points\": 50,\n            \"Level4Points\": 20,\n            \"OfferList\": \"<DrawOfferList><DrawOffer><Key>030-00-00</Key><N>2</N><M>1</M><GenderFilter>0</GenderFilter></DrawOffer></DrawOfferList>\",\n            \"Observations\": \"Comments for the drawing\"\n        }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/changePassword",
+      "method": "post",
+      "summary": "6.- Cambio de contraseña",
+      "description": "Servicio que permitirá cambiar la contraseña del usuario.",
+      "tags": [
+        "CASINO"
+      ],
+      "requestSchema": {
+        "title": "cambioPassRequest",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "password",
+              "type": "string",
+              "description": "Password actual del usuario."
+            },
+            {
+              "title": "newPassword",
+              "type": "string",
+              "description": "Nuevo password del usuario."
+            },
+            {
+              "title": "confirmPassword",
+              "type": "string",
+              "description": "Confirmacion del nuevo password del usuario."
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "title": "cambioPassResponse",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "message",
+              "type": "string"
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"password\": \"demo1234$\",\n    \"newPassword\": \"demo1234$\",\n    \"confirmPassword\": \"demo1234$\"\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"message\": \"Cambio de contraseña exitoso\"\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/sendTempPass",
+      "method": "post",
+      "summary": "7.- Envío de contraseña",
+      "description": "Servicio de envío de contraseña temporal al usuario.",
+      "tags": [
+        "CASINO"
+      ],
+      "requestSchema": {
+        "title": "recuperacionPassRequest",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "email",
+              "type": "string",
+              "description": "Email del usuario."
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "title": "envioPassResponse",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "message",
+              "type": "string"
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"email\": \"antonio.lopez@stratplus.net\"\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"message\": \"Se ha enviado tu contraseña temporal al correo indicado\"\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/recoveryPassword",
+      "method": "post",
+      "summary": "8.- Recuperación de contraseña",
+      "description": "Servicio que permitirá recuperar la contraseña al usuario.",
+      "tags": [
+        "CASINO"
+      ],
+      "requestSchema": {
+        "title": "recuperacionPassRequest",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "password",
+              "type": "string",
+              "description": "Password actual del usuario."
+            },
+            {
+              "title": "newPassword",
+              "type": "string",
+              "description": "Nuevo password del usuario."
+            },
+            {
+              "title": "confirmPassword",
+              "type": "string",
+              "description": "Confirmacion del nuevo password del usuario."
+            },
+            {
+              "title": "email",
+              "type": "string",
+              "description": "Email del usuario."
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "title": "recuperacionPassResponse",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "message",
+              "type": "string"
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"password\": \"MHTdYF6k&\",\n    \"newPassword\": \"demo1234$\",\n    \"confirmPassword\": \"demo1234$\",\n    \"email\": \"antonio.lopez@stratplus.net\"\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"message\": \"Reset de contraseña exitoso\"\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/authentication/login",
+      "method": "post",
+      "summary": "Login",
+      "description": "Servicio que permite iniciar sesión en la app.",
+      "tags": [
+        "Autenticación"
+      ],
+      "requestSchema": {
+        "title": "login",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "username",
+              "type": "string",
+              "description": "Nombre de usuario"
+            },
+            {
+              "title": "password",
+              "type": "string",
+              "description": "Contraseña con SHA256"
+            },
+            {
+              "title": "id_device",
+              "type": "string",
+              "description": "Identificador único del dispositivo"
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "title": "login",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "message",
+              "type": "string"
+            },
+            {
+              "title": "validada",
+              "type": "boolean"
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"username\": \"91595049\",\n    \"password\": \"f71165b0a6a81299fa71fbdcd27c891df12cb9832c3a5d2a0343466e967cd830\",\n    \"id_device\": \"x098y92ynon\"\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"message\": \"Inicio de sesión correcto\",\n    \"validada\": true\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/authentication/logout",
+      "method": "post",
+      "summary": "Logout",
+      "description": "Servicio que permite cerrar la sesión en la app.",
+      "tags": [
+        "Autenticación"
+      ],
+      "requestSchema": {
+        "title": "logout",
+        "type": "object",
+        "properties": {
+          "parsed": [],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "title": "logout",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "message",
+              "type": "string"
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"message\": \"La sesión se cerró correctamente\"\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/usernames/usuario1/check",
+      "method": "get",
+      "summary": "validaUsername",
+      "description": "Servicio que permite validar si el username existe o no.",
+      "tags": [
+        "Registro"
+      ],
+      "requestSchema": {
+        "title": "validaUsername",
+        "type": "object",
+        "properties": {
+          "parsed": [],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "title": "validaUsername",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "conteo",
+              "type": "string"
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"conteo\": 1\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/saveUser",
+      "method": "post",
+      "summary": "registro",
+      "description": "Servicio que permite registrar usuarios a la aplicación.",
+      "tags": [
+        "Registro"
+      ],
+      "requestSchema": {
+        "title": "registro",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "username",
+              "type": "string",
+              "description": "Nombre de usuario"
+            },
+            {
+              "title": "password",
+              "type": "string",
+              "description": "Contraseña con SHA256"
+            },
+            {
+              "title": "nombre",
+              "type": "string",
+              "description": "Nombre completo del cliente"
+            },
+            {
+              "title": "email",
+              "type": "string",
+              "description": "Correo electrónico del cliente"
+            },
+            {
+              "title": "foto",
+              "type": "string",
+              "description": "Dirección url de la foto del cliente"
+            },
+            {
+              "title": "genero",
+              "type": "string",
+              "description": "Sexo del cliente"
+            },
+            {
+              "title": "fechaNacimiento",
+              "type": "string",
+              "description": "Fecha de nacimineto DD/MM/YYYY cliente"
+            },
+            {
+              "title": "telefono",
+              "type": "string",
+              "description": "Teléfono del cliente"
+            },
+            {
+              "title": "idSala",
+              "type": "numeric",
+              "description": "Identificador de la sala a la que se registra"
+            },
+            {
+              "title": "numeroCuenta",
+              "type": "string",
+              "description": "Número de cuenta del cliente"
+            },
+            {
+              "title": "numeroTarjeta",
+              "type": "string",
+              "description": "Número de tarjeta del cliente"
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "title": "registro",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "message",
+              "type": "string"
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"username\": \"usuario1\",\n    \"password\": \"f71165b0a6a81299fa71fbdcd27c891df12cb9832c3a5d2a0343466e967cd830.\",\n    \"nombre\": \"Juan Pérez Ortíz\",\n    \"email\": \"correo@correos.com\",\n    \"foto\": \"http://fotos.com/miFoto\",\n    \"genero\": \"H\",\n    \"fechaNacimiento\": \"01/01/1990\",\n    \"telefono\": \"5555555555\",\n    \"idSala\": 1,\n    \"numeroCuenta\": \"1234123\",\n    \"numeroTarjeta\": \"09120398120\"\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"message\": \"Usuario registrado correctamente\"\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/getAllPreferences",
+      "method": "post",
+      "summary": "Obtener preferencias",
+      "description": "Servicio que permite obtener las preferencias.",
+      "tags": [
+        "Preferencias"
+      ],
+      "requestSchema": {
+        "title": "getAllPreferences",
+        "type": "object",
+        "properties": {
+          "parsed": [],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "title": "getAllPreferences",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "message",
+              "type": "string"
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "[\n    {\n        \"id\": 1,\n        \"preferencia\": \"Deportes\",\n        \"descripcion\": \"los deportes\",\n        \"preferenciasH\": [\n            {\n                \"id\": 7,\n                \"idPadre\": 1,\n                \"preferencia\": \"Fútbol\"\n            },\n            {\n                \"id\": 8,\n                \"idPadre\": 1,\n                \"preferencia\": \"Basquetbol\"\n            }\n        ]\n    },\n    {\n        \"id\": 2,\n        \"preferencia\": \"Casino\",\n        \"descripcion\": \"las cosas de casino\",\n        \"preferenciasH\": [\n            {\n                \"id\": 9,\n                \"idPadre\": 2,\n                \"preferencia\": \"Máquinas\"\n            },\n            {\n                \"id\": 10,\n                \"idPadre\": 2,\n                \"preferencia\": \"JV\"\n            }\n        ]\n    },\n    {\n        \"id\": 3,\n        \"preferencia\": \"Intereses\",\n        \"preferenciasH\": [\n            {\n                \"id\": 4,\n                \"idPadre\": 3,\n                \"preferencia\": \"Alimentos\",\n                \"descripcion\": \"los alimentos\",\n                \"preferenciasH\": [\n                    {\n                        \"id\": 11,\n                        \"idPadre\": 4,\n                        \"preferencia\": \"Hamburguesa\"\n                    },\n                    {\n                        \"id\": 12,\n                        \"idPadre\": 4,\n                        \"preferencia\": \"Hot Dog\"\n                    },\n                    {\n                        \"id\": 13,\n                        \"idPadre\": 4,\n                        \"preferencia\": \"Enchiladas\"\n                    }\n                ]\n            },\n            {\n                \"id\": 5,\n                \"idPadre\": 3,\n                \"preferencia\": \"Bebidas\",\n                \"descripcion\": \"las bebidas\",\n                \"preferenciasH\": [\n                    {\n                        \"id\": 14,\n                        \"idPadre\": 5,\n                        \"preferencia\": \"Café\"\n                    },\n                    {\n                        \"id\": 15,\n                        \"idPadre\": 5,\n                        \"preferencia\": \"Agua\"\n                    },\n                    {\n                        \"id\": 16,\n                        \"idPadre\": 5,\n                        \"preferencia\": \"Cerveza\"\n                    }\n                ]\n            },\n            {\n                \"id\": 6,\n                \"idPadre\": 3,\n                \"preferencia\": \"Texto largo para probar el menu\",\n                \"descripcion\": \"test\",\n                \"preferenciasH\": [\n                    {\n                        \"id\": 17,\n                        \"idPadre\": 6,\n                        \"preferencia\": \"Test 1\"\n                    },\n                    {\n                        \"id\": 18,\n                        \"idPadre\": 6,\n                        \"preferencia\": \"Test 2\"\n                    },\n                    {\n                        \"id\": 19,\n                        \"idPadre\": 6,\n                        \"preferencia\": \"Test 3\"\n                    }\n                ]\n            }\n        ]\n    }\n]"
+        }
+      ]
+    },
+    {
+      "endpoint": "/savePreferences",
+      "method": "post",
+      "summary": "Guardar Preferencias",
+      "description": "Servicio que permite guardar las preferencias del usuario",
+      "tags": [
+        "Preferencias"
+      ],
+      "requestSchema": {
+        "title": "savePreferences",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "ids",
+              "type": "Array",
+              "description": "Arreglo de enteros con los identificadores de las preferencias"
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "title": "savePreferences",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "message",
+              "type": "string"
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"ids\": [\n        1,\n        2,\n        3,\n        4\n    ]\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"message\": \"Preferencias guardadas correctamente\"\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/player/exchange/v1/redeem_gift",
+      "method": "post",
+      "summary": "Redimir regalo",
+      "description": "Este método permite canjear un regalo.",
+      "tags": [
+        "WIGOS"
+      ],
+      "requestSchema": {
+        "title": "redeemGiftRequest",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "AccountId",
+              "type": "numeric",
+              "description": "Número de cuenta del usuario."
+            },
+            {
+              "title": "CreditId",
+              "type": "numeric",
+              "description": "Identificador catálogo de crédito."
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "title": "redeemGiftResponse",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "Result",
+              "type": "ResultObj"
+            }
+          ],
+          "nestedDefinitions": [
+            {
+              "title": "ResultObj",
+              "nestedObj": true,
+              "properties": [
+                {
+                  "title": "Success",
+                  "type": "boolean"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"AccountId\": 1111111,\n    \"CreditId\": 124512\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"Result\": {\n        \"Success\": true\n    }\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/buckets/v1/get_bucket",
+      "method": "post",
+      "summary": "Obtiene tickets por regalo",
+      "description": "Servicio que permitirá obtener el ticket del regalo.",
+      "tags": [
+        "WIGOS"
+      ],
+      "requestSchema": {
+        "title": "GetBucket",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "AccountId",
+              "type": "numeric",
+              "description": "Número de cuenta del usuario."
+            },
+            {
+              "title": "BucketList",
+              "type": "Array[BucketListObj]"
+            }
+          ],
+          "nestedDefinitions": [
+            {
+              "title": "BucketListObj",
+              "properties": []
+            }
+          ]
+        }
+      },
+      "responseSchema": {
+        "title": "GetBucket",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "Result",
+              "type": "ResultObj"
+            },
+            {
+              "title": "Trackdata",
+              "type": "string"
+            },
+            {
+              "title": "BucketList",
+              "type": "Array[BucketListObj]"
+            }
+          ],
+          "nestedDefinitions": [
+            {
+              "title": "ResultObj",
+              "nestedObj": true,
+              "properties": [
+                {
+                  "title": "Success",
+                  "type": "boolean"
+                }
+              ]
+            },
+            {
+              "title": "BucketListObj",
+              "properties": []
+            }
+          ]
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"AccountId\": 1111111,\n    \"BucketList\": [\n        {\n            \"BucketId\": 1\n        },\n        {\n            \"BucketId\": 2\n        }\n    ]\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"Result\": {\n        \"Success\": true\n    },\n    \"Trackdata\": \"123344\",\n    \"BucketList\": [\n        {\n            \"BucketId\": 1,\n            \"Value\": 20\n        },\n        {\n            \"BucketId\": 2,\n            \"Value\": 15\n        }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/buckets/v1/update_bucket",
+      "method": "post",
+      "summary": "Actualiza los buckets",
+      "description": "Servicio que permitirá sumar, restar o modificar los buckets.",
+      "tags": [
+        "WIGOS"
+      ],
+      "requestSchema": {
+        "title": "UpdateBucket",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "AccountId",
+              "type": "numeric",
+              "description": "Número de cuenta del usuario."
+            },
+            {
+              "title": "BucketId",
+              "type": "numeric",
+              "description": ""
+            },
+            {
+              "title": "Operation",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "title": "Reason",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "title": "Value",
+              "type": "numeric",
+              "description": ""
+            },
+            {
+              "title": "ReasonDescription",
+              "type": "string",
+              "description": ""
+            },
+            {
+              "title": "Pin",
+              "type": "string",
+              "description": ""
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "title": "UpdateBucket",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "Result",
+              "type": "ResultObj"
+            }
+          ],
+          "nestedDefinitions": [
+            {
+              "title": "ResultObj",
+              "nestedObj": true,
+              "properties": [
+                {
+                  "title": "Success",
+                  "type": "boolean"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"AccountId\": 1111111,\n    \"BucketId\": 1,\n    \"Operation\": \"1\",\n    \"Reason\": \"99\",\n    \"Value\": 20.44,\n    \"ReasonDescription\": \"Special client\",\n    \"Pin\": \"9e107d9d372bb6826bd81d3542a419d6\"\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"Result\": {\n        \"Success\": true\n    }\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/player/drawings/v1/get_coupons",
+      "method": "post",
+      "summary": "Obtener cupones",
+      "description": "Este método permite recoger los cupones ganados en un sorteo",
+      "tags": [
+        "WIGOS"
+      ],
+      "requestSchema": {
+        "title": "getCouponsRequest",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "AccountId",
+              "type": "numeric",
+              "description": "Número de cuenta del usuario."
+            },
+            {
+              "title": "DrawingId",
+              "type": "numeric",
+              "description": "Identificador del sorteo."
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "title": "getCouponsResponse",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "Result",
+              "type": "ResultObj"
+            },
+            {
+              "title": "Coupons",
+              "type": "Array[CouponsObj]"
+            }
+          ],
+          "nestedDefinitions": [
+            {
+              "title": "ResultObj",
+              "nestedObj": true,
+              "properties": [
+                {
+                  "title": "Success",
+                  "type": "boolean"
+                }
+              ]
+            },
+            {
+              "title": "CouponsObj",
+              "properties": [
+                {
+                  "title": "Id",
+                  "type": "numeric"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"AccountId\": 1111111,\n    \"DrawingId\": 22222\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"Result\": {\n        \"Success\": true\n    },\n    \"Coupons\": [\n        {\n            \"Id\": 21543\n        },\n        {\n            \"Id\": 357354\n        }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/player/exchange/v1/get_available_gifts",
+      "method": "post",
+      "summary": "Obtener regalos disponibles",
+      "description": "Este método permite consultar los regalos asociados a la cuenta.",
+      "tags": [
+        "WIGOS"
+      ],
+      "requestSchema": {
+        "title": "getAvailableGiftsRequest",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "AccountId",
+              "type": "numeric",
+              "description": "Número de cuenta del usuario."
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "title": "getAvailableGiftsResponse",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "Result",
+              "type": "ResultObj"
+            },
+            {
+              "title": "GiftList",
+              "type": "Array[GiftListObj]"
+            }
+          ],
+          "nestedDefinitions": [
+            {
+              "title": "ResultObj",
+              "nestedObj": true,
+              "properties": [
+                {
+                  "title": "Success",
+                  "type": "boolean"
+                }
+              ]
+            },
+            {
+              "title": "GiftListObj",
+              "properties": [
+                {
+                  "title": "Id",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Name",
+                  "type": "string"
+                },
+                {
+                  "title": "Type",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Image",
+                  "type": "string"
+                },
+                {
+                  "title": "Description",
+                  "type": "string"
+                },
+                {
+                  "title": "Level1Points",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Level2Points",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Level3Points",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Level4Points",
+                  "type": "numeric"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"AccountId\": 1111111\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"Result\": {\n        \"Success\": true\n    },\n    \"GiftList\": [\n        {\n            \"Id\": 1,\n            \"Name\": \"Gift 1\",\n            \"Type\": 0,\n            \"Image\": \"XALSHDFGLA4TBQ34BRHYBOAPSBHAFBOV…\",\n            \"Description\": \"Gift 1 description\",\n            \"Level1Points\": 500,\n            \"Level2Points\": 300,\n            \"Level3Points\": 200,\n            \"Level4Points\": 50\n        },\n        {\n            \"Id\": 2,\n            \"Name\": \"Gift 2\",\n            \"Type\": 4,\n            \"Image\": \"XALSHDFGLA4TBQ34BRHYBOAPSBHAFBOV…\",\n            \"Description\": \"Gift 2 description\",\n            \"Level1Points\": 500,\n            \"Level2Points\": 300,\n            \"Level3Points\": 200,\n            \"Level4Points\": 50\n        }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "endpoint": "/player/exchange/v1/get_credit_catalog",
+      "method": "post",
+      "summary": "Obtener catálogo de crédito",
+      "description": "Este método permite consultar el catálogo de crédito.",
+      "tags": [
+        "WIGOS"
+      ],
+      "requestSchema": {
+        "title": "getCreditCatalogRequest",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "AccountId",
+              "type": "numeric",
+              "description": "Número de cuenta del usuario."
+            }
+          ],
+          "nestedDefinitions": []
+        }
+      },
+      "responseSchema": {
+        "title": "getCreditCatalogResponse",
+        "type": "object",
+        "properties": {
+          "parsed": [
+            {
+              "title": "Result",
+              "type": "ResultObj"
+            },
+            {
+              "title": "CreditList",
+              "type": "Array[CreditListObj]"
+            }
+          ],
+          "nestedDefinitions": [
+            {
+              "title": "ResultObj",
+              "nestedObj": true,
+              "properties": [
+                {
+                  "title": "Success",
+                  "type": "boolean"
+                }
+              ]
+            },
+            {
+              "title": "CreditListObj",
+              "properties": [
+                {
+                  "title": "Id",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Name",
+                  "type": "string"
+                },
+                {
+                  "title": "Type",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Level1Points",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Level2Points",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Level3Points",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Level4Points",
+                  "type": "numeric"
+                },
+                {
+                  "title": "Amount",
+                  "type": "numeric"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "requestExamples": [
+        {
+          "title": "Request",
+          "json": "{\n    \"AccountId\": 1111111\n}"
+        }
+      ],
+      "responseExamples": [
+        {
+          "title": "OK",
+          "json": "{\n    \"Result\": {\n        \"Success\": true\n    },\n    \"CreditList\": [\n        {\n            \"Id\": 1,\n            \"Name\": \"$1000\",\n            \"Type\": 1,\n            \"Level1Points\": 500,\n            \"Level2Points\": 300,\n            \"Level3Points\": 200,\n            \"Level4Points\": 50,\n            \"Amount\": 1000\n        },\n        {\n            \"Id\": 2,\n            \"Name\": \"$2.000\",\n            \"Type\": 2,\n            \"Level1Points\": 500,\n            \"Level2Points\": 300,\n            \"Level3Points\": 200,\n            \"Level4Points\": 50,\n            \"Amount\": 2000\n        }\n    ]\n}"
+        }
+      ]
+    }
+  ]
+}
