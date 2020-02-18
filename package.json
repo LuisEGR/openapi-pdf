@@ -26,7 +26,8 @@
   "homepage": "https://github.com/LuisEGR/openapi-pdf#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "handlebars": "^4.7.3"
+    "handlebars": "^4.7.3",
+    "json-refs": "^3.0.13"
   },
   "devDependencies": {
     "jest": "^25.1.0"

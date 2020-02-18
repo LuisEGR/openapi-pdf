@@ -38,7 +38,7 @@ function parseProperties(props, nestedDefinitions){
         if(propObj.type == 'object'){
             propDef.type = propDef.title.capitalize()+'Obj';
             let propertyesNew = parseProperties(propObj.properties, nestedDefinitions).parsed;
-            console.log("propertyesNew:", propertyesNew);
+            // console.log("propertyesNew:", propertyesNew);
             let propObjDef = {
                 title: propDef.type,
                 nestedObj: true,
@@ -48,21 +48,27 @@ function parseProperties(props, nestedDefinitions){
             // parsed.push(propObjDef);
         }
 
+        let noModel = ['string', 'integer', 'number'];
         if(propObj.type == 'array'){
-            propDef.type = 'Array['+ propDef.title.capitalize()+'Obj' + ']';
-            let propertyesNew = parseProperties(propObj.items.properties, nestedDefinitions).parsed;
-            console.log("propertyesNew:", propertyesNew);
-            let propObjDef = {
-                title: propDef.title.capitalize()+'Obj',
-                properties: propertyesNew
+            console.log('propObj.items.type :', propObj.items.type);
+            if(noModel.indexOf(propObj.items.type) !== -1){
+                propDef.type = 'Array['+ propObj.items.type + ']';                
+            } else {
+                propDef.type = 'Array['+ propDef.title.capitalize()+'Item' + ']';
+                let propertyesNew = parseProperties(propObj.items.properties, nestedDefinitions).parsed;
+                // console.log("propertyesNew:", propertyesNew);
+                let propObjDef = {
+                    title: propDef.title.capitalize()+'Item',
+                    properties: propertyesNew
+                }
+                nestedDefinitions.push(propObjDef);
             }
-            nestedDefinitions.push(propObjDef);
             // parsed.push(propObjDef);
         }
         
         parsed.push(propDef);
     });
-    console.log("nestedDefinitions:", JSON.stringify(nestedDefinitions, null, 2));
+    // console.log("nestedDefinitions:", JSON.stringify(nestedDefinitions, null, 2));
     return {
         parsed, 
         nestedDefinitions
@@ -95,12 +101,23 @@ function getRequestExamples(api){
 function getResponseExamples(api){
     let exArr = [];
     let examples = getPropertySecure(api, 'responses', '200', 'content', 'application/json', 'examples');
+    let errorExamples = getPropertySecure(api, 'responses', '400', 'content', 'application/json', 'examples');
+
     Object.keys(examples).forEach((ex) => {
         exArr.push({
-            title: ex,
+            title: '[HTTP 200] '+ ex,
             json: JSON.stringify(examples[ex].value, null, 4)
         })
     });
+
+    Object.keys(errorExamples).forEach((ex) => {
+        exArr.push({
+            title: '[HTTP 400] '+ ex,
+            json: JSON.stringify(errorExamples[ex].value, null, 4)
+        })
+    });
+
+    
     return exArr;
 }
 

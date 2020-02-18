@@ -1,4 +1,5 @@
-<h2 class="title-api">{{operationId}}</h2>
+<h2 class="title-api">{{summary}}</h2>
+<br>
     <p class="endpoint-api">
         <span>{{method}}</span>
         <span>{{endpoint}}</span>
@@ -22,7 +23,7 @@
                 <td>{{this.title}}</td>
                 <td>{{this.type}}</td>
                 <td>x</td>
-                <td>{{this.description}}</td>
+                <td>{{{this.description}}}</td>
             </tr>
             {{/each}}
         </tbody>
@@ -46,12 +47,12 @@
 
             <tr>
                 {{#if @first}}
-                <td rowspan="{{../this.properties.length}}">{{../this.title}}</td>                
+                <td rowspan="{{../this.properties.length}}"><span class="rotated">{{../this.title}}</span></td>                
                 {{/if}}
                 <td>{{this.title}}</td>
                 <td>{{this.type}}</td>
                 <td>x</td>
-                <td>{{this.description}}</td>
+                <td>{{{this.description}}}</td>
             </tr>
             {{/each}}
             {{/each}}
@@ -76,9 +77,9 @@
             {{#each responseSchema.properties.parsed}}
             <tr>
                 <td>{{this.title}}</td>
-                <td>{{this.type}}</td>
-                <td>x</td>
-                <td>{{this.description}}</td>
+                <td class="center">{{this.type}}</td>
+                <td class="center">x</td>
+                <td>{{{this.description}}}</td>
             </tr>
             {{/each}}
         </tbody>
@@ -103,12 +104,12 @@
 
             <tr>
                 {{#if @first}}
-                <td rowspan="{{../this.properties.length}}">{{../this.title}}</td>                
+                <td rowspan="{{../this.properties.length}}"><span class="rotated">{{../this.title}}</span></td>                
                 {{/if}}
-                <td>{{this.title}}</td>
-                <td>{{this.type}}</td>
-                <td>x</td>
-                <td>{{this.description}}</td>
+                <td >{{this.title}}</td>
+                <td class="center">{{this.type}}</td>
+                <td class="center">x</td>
+                <td>{{{this.description}}}</td>
             </tr>
             {{/each}}
             {{/each}}
