@@ -10,7 +10,8 @@
 
     <!-- <link rel="stylesheet"
         href="https://mocks.betpalace.mx/css/an-old-hope.css"> -->
-    <script src="https://mocks.betpalace.mx/js/highlight.pack.js"></script>
+    <!-- <script src="https://mocks.betpalace.mx/js/highlight.pack.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@9.18.1/lib/highlight.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0">
@@ -132,7 +133,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         } */
 
         table {
-            page-break-inside: auto
+            page-break-inside: auto;
+            border-spacing: 0;
+            border-collapse: collapse;
         }
 
         tr {
@@ -168,8 +171,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             width: 100%;
             max-width: 100%;
             table-layout: fixed;
-            border-spacing: 0;
-            border-collapse: collapse;
+            
         }
 
         table.definition {

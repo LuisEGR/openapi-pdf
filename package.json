@@ -4,6 +4,7 @@
   "description": "OpenApi PDF Generator",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "jest",
     "test:watch": "jest --watch"
   },
@@ -25,9 +26,15 @@
   },
   "homepage": "https://github.com/LuisEGR/openapi-pdf#readme",
   "dependencies": {
+    "bulma": "^0.8.0",
     "express": "^4.17.1",
+    "got": "^10.6.0",
     "handlebars": "^4.7.3",
-    "json-refs": "^3.0.13"
+    "highlight": "^0.2.4",
+    "highlight.js": "^9.18.1",
+    "js-yaml": "^3.13.1",
+    "json-refs": "^3.0.13",
+    "yaml": "^1.7.2"
   },
   "devDependencies": {
     "jest": "^25.1.0"

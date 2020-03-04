@@ -34,11 +34,9 @@ function parseProperties(props, nestedDefinitions){
             description: propObj.description
         };
         
-        // console.log("property:", propObj);
         if(propObj.type == 'object'){
             propDef.type = propDef.title.capitalize()+'Obj';
             let propertyesNew = parseProperties(propObj.properties, nestedDefinitions).parsed;
-            // console.log("propertyesNew:", propertyesNew);
             let propObjDef = {
                 title: propDef.type,
                 nestedObj: true,
@@ -50,13 +48,12 @@ function parseProperties(props, nestedDefinitions){
 
         let noModel = ['string', 'integer', 'number'];
         if(propObj.type == 'array'){
-            console.log('propObj.items.type :', propObj.items.type);
+            
             if(noModel.indexOf(propObj.items.type) !== -1){
                 propDef.type = 'Array['+ propObj.items.type + ']';                
             } else {
                 propDef.type = 'Array['+ propDef.title.capitalize()+'Item' + ']';
                 let propertyesNew = parseProperties(propObj.items.properties, nestedDefinitions).parsed;
-                // console.log("propertyesNew:", propertyesNew);
                 let propObjDef = {
                     title: propDef.title.capitalize()+'Item',
                     properties: propertyesNew
@@ -68,7 +65,6 @@ function parseProperties(props, nestedDefinitions){
         
         parsed.push(propDef);
     });
-    // console.log("nestedDefinitions:", JSON.stringify(nestedDefinitions, null, 2));
     return {
         parsed, 
         nestedDefinitions
@@ -76,7 +72,7 @@ function parseProperties(props, nestedDefinitions){
 }
 
 function parseSchema(schema){
-    // console.log("schema:", schema);
+    if(!schema.type) return null;
     return {
         title: schema.title,
         type: schema.type,
@@ -121,20 +117,27 @@ function getResponseExamples(api){
     return exArr;
 }
 
+
+// function getBodySchemaFromParameters(parameters){
+//     if(!parameters) return null;
+//     console.log('parameters :', parameters);
+//     let bodyObj = parameters.find((p) => p.in == 'body');
+//     if(!bodyObj) return null;
+//     return parseSchema(bodyObj.schema);
+// }
+
 function parseApi(apiRoot, endpoint) {
     api = apiRoot[endpoint];
     let methods = Object.keys(api);
     let apisParsed = [];
-    console.log("methods:", methods);
-    console.log("api:", api);
 
     methods.forEach((method) => {
         let singleApi = api[method];
         let bodySchema = getPropertySecure(singleApi, 'requestBody', 'content', 'application/json', 'schema');
         let bodyResponse = getPropertySecure(singleApi, 'responses', '200', 'content', 'application/json', 'schema');
+        // let parameters = getPropertySecure(singleApi, 'parameters');
         let requestExamples = getRequestExamples(singleApi);
         responseExamples = getResponseExamples(singleApi);
-        // console.log("bodySchema:", bodySchema);
         let dest = {
             endpoint: endpoint,
             method: method,
@@ -142,11 +145,12 @@ function parseApi(apiRoot, endpoint) {
             operationId: api.operationId,
             description: singleApi.description,
             tags: singleApi.tags,
-            requestSchema: parseSchema(bodySchema),
+            requestSchema: parseSchema(bodySchema), //|| getBodySchemaFromParameters(parameters),
             responseSchema: parseSchema(bodyResponse),
             requestExamples: requestExamples,
             responseExamples: responseExamples
         }
+
         apisParsed.push(dest);
     });
     return apisParsed;

@@ -1,140 +1,144 @@
 <h2 class="title-api">{{summary}}</h2>
 <br>
-    <p class="endpoint-api">
-        <span>{{method}}</span>
-        <span>{{endpoint}}</span>
-    </p>
-    <p>{{description}}</p>
+<p class="endpoint-api">
+    <span>{{method}}</span>
+    <span>{{endpoint}}</span>
+</p>
+<p>{{{description}}}</p>
 
 
-    <h3>Request Schema</h3>
-    <table class="definition-response">
-        <thead>
-            <tr>
-                <th>Field</th>
-                <th>Type</th>
-                <th>Req.</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each requestSchema.properties.parsed}}
-            <tr>
-                <td>{{this.title}}</td>
-                <td>{{this.type}}</td>
-                <td>x</td>
-                <td>{{{this.description}}}</td>
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
-
-    {{#if requestSchema.properties.nestedDefinitions.length}}
-    <h3>Models</h3>
-    <table class="definition">
-        <thead>
-            <tr>
-                <th>Model</th>
-                <th>Field</th>
-                <th>Type</th>
-                <th>Req.</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each requestSchema.properties.nestedDefinitions}}
-            {{#each this.properties}}
-
-            <tr>
-                {{#if @first}}
-                <td rowspan="{{../this.properties.length}}"><span class="rotated">{{../this.title}}</span></td>                
-                {{/if}}
-                <td>{{this.title}}</td>
-                <td>{{this.type}}</td>
-                <td>x</td>
-                <td>{{{this.description}}}</td>
-            </tr>
-            {{/each}}
-            {{/each}}
-        </tbody>
-    </table>
-    {{/if}}
-
-
-
-    <h3>Response Schema</h3>
-    <table class="definition-response">
-        <thead>
-            <tr>
-                <th>Field</th>
-                <th>Type</th>
-                <th>Req.
-                </th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each responseSchema.properties.parsed}}
-            <tr>
-                <td>{{this.title}}</td>
-                <td class="center">{{this.type}}</td>
-                <td class="center">x</td>
-                <td>{{{this.description}}}</td>
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
-
-    
-    {{#if responseSchema.properties.nestedDefinitions.length}}
-    <h3>Models</h3>
-    <table class="definition">
-        <thead>
-            <tr>
-                <th>Model</th>
-                <th>Field</th>
-                <th>Type</th>
-                <th>Req.</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each responseSchema.properties.nestedDefinitions}}
-            {{#each this.properties}}
-
-            <tr>
-                {{#if @first}}
-                <td rowspan="{{../this.properties.length}}"><span class="rotated">{{../this.title}}</span></td>                
-                {{/if}}
-                <td >{{this.title}}</td>
-                <td class="center">{{this.type}}</td>
-                <td class="center">x</td>
-                <td>{{{this.description}}}</td>
-            </tr>
-            {{/each}}
-            {{/each}}
-        </tbody>
-    </table>
-    {{/if}}
-
-    <div class="example">
-
-        <h3 class="title">Request Examples</h3>
-
-        {{#each requestExamples}}
-        <p>{{this.title}}</p>
-        <pre><code class="json">{{this.json}}</code></pre>
-        <br>
+<h3>Request Schema</h3>
+<table class="definition-response">
+    <thead>
+        <tr>
+            <th>Field</th>
+            <th>Type</th>
+            <th>Req.</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each requestSchema.properties.parsed}}
+        <tr>
+            <td>{{this.title}}</td>
+            <td>{{this.type}}</td>
+            <td>x</td>
+            <td>{{{this.description}}}</td>
+        </tr>
         {{/each}}
+    </tbody>
+</table>
 
-    </div>
+{{#if requestSchema.properties.nestedDefinitions.length}}
+<h3>Models</h3>
+<table class="definition">
+    <thead>
+        <tr>
+            <th>Model</th>
+            <th>Field</th>
+            <th>Type</th>
+            <th>Req.</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each requestSchema.properties.nestedDefinitions}}
+        {{#each this.properties}}
 
-
-    <div class="example">
-        <h3 class="title">Response Examples</h3>
-        {{#each responseExamples}}
-        <p>{{this.title}}</p>
-        <pre><code class="json">{{this.json}}</code></pre>
+        <tr>
+            {{#if @first}}
+            <td rowspan="{{../this.properties.length}}"><span class="rotated">{{../this.title}}</span></td>
+            {{/if}}
+            <td>{{this.title}}</td>
+            <td>{{this.type}}</td>
+            <td>x</td>
+            <td>{{{this.description}}}</td>
+        </tr>
         {{/each}}
+        {{/each}}
+    </tbody>
+</table>
+{{/if}}
 
-    </div>
+
+
+<h3>Response Schema</h3>
+<table class="definition-response">
+    <thead>
+        <tr>
+            <th>Field</th>
+            <th>Type</th>
+            <th>Req.
+            </th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each responseSchema.properties.parsed}}
+        <tr>
+            <td>{{this.title}}</td>
+            <td class="center">{{this.type}}</td>
+            <td class="center">x</td>
+            <td>{{{this.description}}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+
+{{#if responseSchema.properties.nestedDefinitions.length}}
+<h3>Models</h3>
+<table class="definition">
+    <thead>
+        <tr>
+            <th>Model</th>
+            <th>Field</th>
+            <th>Type</th>
+            <th>Req.</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each responseSchema.properties.nestedDefinitions}}
+        {{#each this.properties}}
+
+        <tr>
+            {{#if @first}}
+            <td rowspan="{{../this.properties.length}}"><span class="rotated">{{../this.title}}</span></td>
+            {{/if}}
+            <td>{{this.title}}</td>
+            <td class="center">{{this.type}}</td>
+            <td class="center">x</td>
+            <td>{{{this.description}}}</td>
+        </tr>
+        {{/each}}
+        {{/each}}
+    </tbody>
+</table>
+{{/if}}
+
+{{#if requestExamples.length}}
+<div class="example">
+
+    <h3 class="title">Request Examples</h3>
+
+    {{#each requestExamples}}
+    <p>{{this.title}}</p>
+    <pre><code class="hljs json">{{{hljs this.json}}}</code></pre>
+    <br>
+    {{/each}}
+
+</div>
+{{/if}}
+
+{{#if responseExamples.length}}
+<div class="example">
+    <h3 class="title">Response Examples</h3>
+    {{#each responseExamples}}
+    <p>{{this.title}}</p>
+    <pre><code class="hljs json">{{{hljs this.json}}}</code></pre>
+    {{/each}}
+
+</div>
+
+{{/if}}

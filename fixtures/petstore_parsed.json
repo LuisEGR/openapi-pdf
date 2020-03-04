@@ -4,479 +4,261 @@
   "apis": [
     {
       "endpoint": "/pet",
-      "method": "put",
-      "summary": "updatePet",
-      "description": "Update an existing pet",
+      "method": "post",
+      "summary": "Add a new pet to the store",
+      "description": "",
       "tags": [
         "pet"
       ],
-      "requestSchema": {
-        "description": "Pet object that needs to be added to the store",
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
-      "responseSchema": {
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
+      "requestSchema": null,
+      "responseSchema": null,
       "requestExamples": [],
       "responseExamples": []
     },
     {
       "endpoint": "/pet",
-      "method": "post",
-      "summary": "addPet",
-      "description": "Add a new pet to the store",
+      "method": "put",
+      "summary": "Update an existing pet",
+      "description": "",
       "tags": [
         "pet"
       ],
-      "requestSchema": {
-        "description": "Pet object that needs to be added to the store",
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
-      "responseSchema": {
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
+      "requestSchema": null,
+      "responseSchema": null,
       "requestExamples": [],
       "responseExamples": []
     },
     {
       "endpoint": "/pet/findByStatus",
       "method": "get",
-      "summary": "findPetsByStatus",
-      "description": "Finds Pets by status",
+      "summary": "Finds Pets by status",
+      "description": "Multiple status values can be provided with comma separated strings",
       "tags": [
         "pet"
       ],
-      "requestSchema": {
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
-      "responseSchema": {
-        "type": "array",
-        "description": "successful operation",
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
+      "requestSchema": null,
+      "responseSchema": null,
       "requestExamples": [],
       "responseExamples": []
     },
     {
       "endpoint": "/pet/findByTags",
       "method": "get",
-      "summary": "findPetsByTags",
-      "description": "Finds Pets by tags",
+      "summary": "Finds Pets by tags",
+      "description": "Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
       "tags": [
         "pet"
       ],
-      "requestSchema": {
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
-      "responseSchema": {
-        "type": "array",
-        "description": "successful operation",
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
+      "requestSchema": null,
+      "responseSchema": null,
       "requestExamples": [],
       "responseExamples": []
     },
     {
       "endpoint": "/pet/{petId}",
       "method": "get",
-      "summary": "getPetById",
-      "description": "Find pet by ID",
+      "summary": "Find pet by ID",
+      "description": "Returns a single pet",
       "tags": [
         "pet"
       ],
-      "requestSchema": {
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
-      "responseSchema": {
-        "description": "successful operation",
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
+      "requestSchema": null,
+      "responseSchema": null,
       "requestExamples": [],
       "responseExamples": []
     },
     {
       "endpoint": "/pet/{petId}",
       "method": "post",
-      "summary": "updatePetWithForm",
-      "description": "Updates a pet in the store with form data",
+      "summary": "Updates a pet in the store with form data",
+      "description": "",
       "tags": [
         "pet"
       ],
-      "requestSchema": {
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
-      "responseSchema": {
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
+      "requestSchema": null,
+      "responseSchema": null,
       "requestExamples": [],
       "responseExamples": []
     },
     {
       "endpoint": "/pet/{petId}",
       "method": "delete",
-      "summary": "deletePet",
-      "description": "Deletes a pet",
+      "summary": "Deletes a pet",
+      "description": "",
       "tags": [
         "pet"
       ],
-      "requestSchema": {
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
-      "responseSchema": {
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
+      "requestSchema": null,
+      "responseSchema": null,
       "requestExamples": [],
       "responseExamples": []
     },
     {
       "endpoint": "/pet/{petId}/uploadImage",
       "method": "post",
-      "summary": "uploadFile",
-      "description": "uploads an image",
+      "summary": "uploads an image",
+      "description": "",
       "tags": [
         "pet"
       ],
-      "requestSchema": {
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
-      "responseSchema": {
-        "description": "successful operation",
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
+      "requestSchema": null,
+      "responseSchema": null,
       "requestExamples": [],
       "responseExamples": []
     },
     {
       "endpoint": "/store/inventory",
       "method": "get",
-      "summary": "getInventory",
-      "description": "Returns pet inventories by status",
+      "summary": "Returns pet inventories by status",
+      "description": "Returns a map of status codes to quantities",
       "tags": [
         "store"
       ],
-      "requestSchema": {
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
-      "responseSchema": {
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
+      "requestSchema": null,
+      "responseSchema": null,
       "requestExamples": [],
       "responseExamples": []
     },
     {
       "endpoint": "/store/order",
       "method": "post",
-      "summary": "placeOrder",
-      "description": "Place an order for a pet",
+      "summary": "Place an order for a pet",
+      "description": "",
       "tags": [
         "store"
       ],
-      "requestSchema": {
-        "description": "order placed for purchasing the pet",
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
-      "responseSchema": {
-        "description": "successful operation",
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
+      "requestSchema": null,
+      "responseSchema": null,
       "requestExamples": [],
       "responseExamples": []
     },
     {
       "endpoint": "/store/order/{orderId}",
       "method": "get",
-      "summary": "getOrderById",
-      "description": "Find purchase order by ID",
+      "summary": "Find purchase order by ID",
+      "description": "For valid response try integer IDs with value >= 1 and <= 10. Other values will generated exceptions",
       "tags": [
         "store"
       ],
-      "requestSchema": {
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
-      "responseSchema": {
-        "description": "successful operation",
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
+      "requestSchema": null,
+      "responseSchema": null,
       "requestExamples": [],
       "responseExamples": []
     },
     {
       "endpoint": "/store/order/{orderId}",
       "method": "delete",
-      "summary": "deleteOrder",
-      "description": "Delete purchase order by ID",
+      "summary": "Delete purchase order by ID",
+      "description": "For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors",
       "tags": [
         "store"
       ],
-      "requestSchema": {
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
-      "responseSchema": {
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
+      "requestSchema": null,
+      "responseSchema": null,
       "requestExamples": [],
       "responseExamples": []
     },
     {
       "endpoint": "/user",
       "method": "post",
-      "summary": "createUser",
-      "description": "Create user",
+      "summary": "Create user",
+      "description": "This can only be done by the logged in user.",
       "tags": [
         "user"
       ],
-      "requestSchema": {
-        "description": "Created user object",
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
-      "responseSchema": {
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
+      "requestSchema": null,
+      "responseSchema": null,
       "requestExamples": [],
       "responseExamples": []
     },
     {
       "endpoint": "/user/createWithArray",
       "method": "post",
-      "summary": "createUsersWithArrayInput",
-      "description": "Creates list of users with given input array",
+      "summary": "Creates list of users with given input array",
+      "description": "",
       "tags": [
         "user"
       ],
-      "requestSchema": {
-        "type": "array",
-        "description": "List of user object",
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
-      "responseSchema": {
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
+      "requestSchema": null,
+      "responseSchema": null,
       "requestExamples": [],
       "responseExamples": []
     },
     {
       "endpoint": "/user/createWithList",
       "method": "post",
-      "summary": "createUsersWithListInput",
-      "description": "Creates list of users with given input array",
+      "summary": "Creates list of users with given input array",
+      "description": "",
       "tags": [
         "user"
       ],
-      "requestSchema": {
-        "type": "array",
-        "description": "List of user object",
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
-      "responseSchema": {
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
+      "requestSchema": null,
+      "responseSchema": null,
       "requestExamples": [],
       "responseExamples": []
     },
     {
       "endpoint": "/user/login",
       "method": "get",
-      "summary": "loginUser",
-      "description": "Logs user into the system",
+      "summary": "Logs user into the system",
+      "description": "",
       "tags": [
         "user"
       ],
-      "requestSchema": {
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
-      "responseSchema": {
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
+      "requestSchema": null,
+      "responseSchema": null,
       "requestExamples": [],
       "responseExamples": []
     },
     {
       "endpoint": "/user/logout",
       "method": "get",
-      "summary": "logoutUser",
-      "description": "Logs out current logged in user session",
+      "summary": "Logs out current logged in user session",
+      "description": "",
       "tags": [
         "user"
       ],
-      "requestSchema": {
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
-      "responseSchema": {
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
+      "requestSchema": null,
+      "responseSchema": null,
       "requestExamples": [],
       "responseExamples": []
     },
     {
       "endpoint": "/user/{username}",
       "method": "get",
-      "summary": "getUserByName",
-      "description": "Get user by user name",
+      "summary": "Get user by user name",
+      "description": "",
       "tags": [
         "user"
       ],
-      "requestSchema": {
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
-      "responseSchema": {
-        "description": "successful operation",
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
+      "requestSchema": null,
+      "responseSchema": null,
       "requestExamples": [],
       "responseExamples": []
     },
     {
       "endpoint": "/user/{username}",
       "method": "put",
-      "summary": "updateUser",
-      "description": "Updated user",
+      "summary": "Updated user",
+      "description": "This can only be done by the logged in user.",
       "tags": [
         "user"
       ],
-      "requestSchema": {
-        "description": "Updated user object",
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
-      "responseSchema": {
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
+      "requestSchema": null,
+      "responseSchema": null,
       "requestExamples": [],
       "responseExamples": []
     },
     {
       "endpoint": "/user/{username}",
       "method": "delete",
-      "summary": "deleteUser",
-      "description": "Delete user",
+      "summary": "Delete user",
+      "description": "This can only be done by the logged in user.",
       "tags": [
         "user"
       ],
-      "requestSchema": {
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
-      "responseSchema": {
-        "properties": {
-          "parsed": [],
-          "nestedDefinitions": []
-        }
-      },
+      "requestSchema": null,
+      "responseSchema": null,
       "requestExamples": [],
       "responseExamples": []
     }
