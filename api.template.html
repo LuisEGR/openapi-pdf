@@ -22,7 +22,7 @@
         <tr>
             <td>{{this.title}}</td>
             <td>{{this.type}}</td>
-            <td>x</td>
+            <td>{{required this.required}}</td>
             <td>{{{this.description}}}</td>
         </tr>
         {{/each}}
@@ -51,7 +51,7 @@
             {{/if}}
             <td>{{this.title}}</td>
             <td>{{this.type}}</td>
-            <td>x</td>
+            <td>{{required this.required}}</td>
             <td>{{{this.description}}}</td>
         </tr>
         {{/each}}
@@ -68,8 +68,7 @@
         <tr>
             <th>Field</th>
             <th>Type</th>
-            <th>Req.
-            </th>
+            <th>Req.</th>
             <th>Description</th>
         </tr>
     </thead>
@@ -78,7 +77,7 @@
         <tr>
             <td>{{this.title}}</td>
             <td class="center">{{this.type}}</td>
-            <td class="center">x</td>
+            <td class="center">{{required this.required}}</td>
             <td>{{{this.description}}}</td>
         </tr>
         {{/each}}
@@ -108,7 +107,7 @@
             {{/if}}
             <td>{{this.title}}</td>
             <td class="center">{{this.type}}</td>
-            <td class="center">x</td>
+            <td class="center">{{required this.required}}</td>
             <td>{{{this.description}}}</td>
         </tr>
         {{/each}}

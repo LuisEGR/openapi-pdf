@@ -21,22 +21,25 @@ function parseOAS(oas) {
     }
 }
 
-function parseProperties(props, nestedDefinitions){
+function parseProperties(props, nestedDefinitions, requiredFields){
     props = props || {};
     let propsKeys = Object.keys(props);
     let parsed = [];
     nestedDefinitions = nestedDefinitions || [];
     propsKeys.forEach((property) => {
         let propObj = props[property];
+        console.log('propObj :', propObj);
+        let reqf = requiredFields || [];
         let propDef = {
             title: property,
             type: propObj.type,
-            description: propObj.description
+            description: propObj.description,
+            required: reqf.indexOf(property) !== -1
         };
         
         if(propObj.type == 'object'){
             propDef.type = propDef.title.capitalize()+'Obj';
-            let propertyesNew = parseProperties(propObj.properties, nestedDefinitions).parsed;
+            let propertyesNew = parseProperties(propObj.properties, nestedDefinitions, propObj.required).parsed;
             let propObjDef = {
                 title: propDef.type,
                 nestedObj: true,
@@ -77,7 +80,7 @@ function parseSchema(schema){
         title: schema.title,
         type: schema.type,
         description: schema.description,
-        properties: parseProperties(schema.properties)
+        properties: parseProperties(schema.properties, null, schema.required)
     };
 
 }
@@ -134,6 +137,7 @@ function parseApi(apiRoot, endpoint) {
     methods.forEach((method) => {
         let singleApi = api[method];
         let bodySchema = getPropertySecure(singleApi, 'requestBody', 'content', 'application/json', 'schema');
+        console.log('bodySchema :', JSON.stringify(bodySchema));
         let bodyResponse = getPropertySecure(singleApi, 'responses', '200', 'content', 'application/json', 'schema');
         // let parameters = getPropertySecure(singleApi, 'parameters');
         let requestExamples = getRequestExamples(singleApi);

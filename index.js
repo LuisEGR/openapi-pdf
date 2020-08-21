@@ -18,6 +18,10 @@ handlebars.registerHelper('hljs', function(context, options){
     // return "<b class=\"blackkkkk\">"+context+"</b>";
 })
 
+handlebars.registerHelper('required', function(context, options){
+    return context ? 'X' : '';
+    // return "<b class=\"blackkkkk\">"+context+"</b>";
+})
 
 let parseJson = (str) => {
     try{
@@ -56,6 +60,7 @@ app.use('/build', async (req, res) => {
         let spec = parser.parseOAS(solved.resolved);
         let allHTML = template(spec);
         spec.apis.forEach((api) => {
+            console.log('api :', JSON.stringify(api));
             allHTML += template2(api);
         })
 
