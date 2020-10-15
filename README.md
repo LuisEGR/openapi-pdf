@@ -12,3 +12,6 @@ npm start
 - paste your openapi url (json)
 - click "Send"
 - click "Print"
+
+
+![alt OpenapiPDF](static/screenshot.png "OpenApiPDF")
