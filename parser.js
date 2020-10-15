@@ -28,7 +28,6 @@ function parseProperties(props, nestedDefinitions, requiredFields){
     nestedDefinitions = nestedDefinitions || [];
     propsKeys.forEach((property) => {
         let propObj = props[property];
-        console.log('propObj :', propObj);
         let reqf = requiredFields || [];
         let propDef = {
             title: property,
@@ -56,7 +55,7 @@ function parseProperties(props, nestedDefinitions, requiredFields){
                 propDef.type = 'Array['+ propObj.items.type + ']';                
             } else {
                 propDef.type = 'Array['+ propDef.title.capitalize()+'Item' + ']';
-                let propertyesNew = parseProperties(propObj.items.properties, nestedDefinitions).parsed;
+                let propertyesNew = parseProperties(propObj.items.properties, nestedDefinitions, propObj.items.required).parsed;
                 let propObjDef = {
                     title: propDef.title.capitalize()+'Item',
                     properties: propertyesNew
@@ -137,8 +136,8 @@ function parseApi(apiRoot, endpoint) {
     methods.forEach((method) => {
         let singleApi = api[method];
         let bodySchema = getPropertySecure(singleApi, 'requestBody', 'content', 'application/json', 'schema');
-        console.log('bodySchema :', JSON.stringify(bodySchema));
         let bodyResponse = getPropertySecure(singleApi, 'responses', '200', 'content', 'application/json', 'schema');
+        // console.log('bodySchema :', JSON.stringify(bodySchema));
         // let parameters = getPropertySecure(singleApi, 'parameters');
         let requestExamples = getRequestExamples(singleApi);
         responseExamples = getResponseExamples(singleApi);

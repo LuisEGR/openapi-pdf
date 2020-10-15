@@ -75,6 +75,7 @@ app.use('/', express.static('./static'));
 
 
 http.listen(port, () => {
+    console.log("Listening on http://localhost:"+port)
 })
 
 
