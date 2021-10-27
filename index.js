@@ -46,18 +46,18 @@ let template2 = handlebars.compile(template2HTML)
 
 app.use('/build', async (req, res) => {
     let u = req.query.l;
-    // let pare = await got(req.query.l).then((response) => {
-    //     let api = {}
-    //     if(u.indexOf('json') !== -1){
-    //         api = parseJson(response.body);
-    //     } else if(u.indexOf('yaml') !== -1) {
-    //         api = yaml.safeLoad(response.body)
-    //     }
-    //     return api;
-    // })
+    let pare = await got(req.query.l).then((response) => {
+        let api = {}
+        if(u.indexOf('json') !== -1){
+            api = parseJson(response.body);
+        } else if(u.indexOf('yaml') !== -1) {
+            api = yaml.safeLoad(response.body)
+        }
+        return api;
+    })
 
 
-    pare = JSON.parse(fs.readFileSync('./fixtures/with_params.json'));
+    // pare = JSON.parse(fs.readFileSync('./fixtures/with_params.json'));
     // pare = JSON.parse(fs.readFileSync('./fixtures/petstore.json'));
     // let pare = JSON.parse(fs.readFileSync('./fixtures/wigos.json'));
 

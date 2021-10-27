@@ -150,6 +150,7 @@ function parseApi(apiRoot, endpoint) {
 
     methods.forEach((method) => {
         let singleApi = api[method];
+        singleApi.parameters = singleApi.parameters || [];
         // console.log('singleApi :', singleApi);
         let bodySchema = getPropertySecure(singleApi, 'requestBody', 'content', 'application/json', 'schema');
         let bodyResponse = getPropertySecure(singleApi, 'responses', '200', 'content', 'application/json', 'schema');
