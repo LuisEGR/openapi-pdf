@@ -23,6 +23,11 @@ handlebars.registerHelper('required', function(context, options){
     // return "<b class=\"blackkkkk\">"+context+"</b>";
 })
 
+handlebars.registerHelper('json', function(context) {
+    return JSON.stringify(context, null, 2);
+});
+
+
 let parseJson = (str) => {
     try{
         let obj = JSON.parse(str);
@@ -41,26 +46,28 @@ let template2 = handlebars.compile(template2HTML)
 
 app.use('/build', async (req, res) => {
     let u = req.query.l;
-    let pare = await got(req.query.l).then((response) => {
-        let api = {}
-        if(u.indexOf('json') !== -1){
-            api = parseJson(response.body);
-        } else if(u.indexOf('yaml') !== -1) {
-            api = yaml.safeLoad(response.body)
-        }
-        return api;
-    })
+    // let pare = await got(req.query.l).then((response) => {
+    //     let api = {}
+    //     if(u.indexOf('json') !== -1){
+    //         api = parseJson(response.body);
+    //     } else if(u.indexOf('yaml') !== -1) {
+    //         api = yaml.safeLoad(response.body)
+    //     }
+    //     return api;
+    // })
 
 
+    pare = JSON.parse(fs.readFileSync('./fixtures/with_params.json'));
     // pare = JSON.parse(fs.readFileSync('./fixtures/petstore.json'));
     // let pare = JSON.parse(fs.readFileSync('./fixtures/wigos.json'));
 
     resolve(pare).then((solved) => {
         fs.writeFileSync('solved.json', JSON.stringify(solved, null, 4));
         let spec = parser.parseOAS(solved.resolved);
+        // console.log('spec :', spec);
         let allHTML = template(spec);
         spec.apis.forEach((api) => {
-            console.log('api :', JSON.stringify(api));
+            // console.log('api :', JSON.stringify(api));
             allHTML += template2(api);
         })
 

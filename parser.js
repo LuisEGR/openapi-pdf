@@ -74,7 +74,22 @@ function parseProperties(props, nestedDefinitions, requiredFields){
 }
 
 function parseSchema(schema){
+
+    if(schema.schema){
+        if(schema.schema.type == 'array'){
+            if(!schema.schema) return;
+            return { 
+                type: 'array, '+(schema.required?'Required':'Optional'),
+                properties:  parseSchema(schema.schema.items).properties
+            }
+        } else {
+            return parseSchema(schema.schema);
+        }
+    }
+
     if(!schema.type) return null;
+
+    
     return {
         title: schema.title,
         type: schema.type,
@@ -135,8 +150,33 @@ function parseApi(apiRoot, endpoint) {
 
     methods.forEach((method) => {
         let singleApi = api[method];
+        // console.log('singleApi :', singleApi);
         let bodySchema = getPropertySecure(singleApi, 'requestBody', 'content', 'application/json', 'schema');
         let bodyResponse = getPropertySecure(singleApi, 'responses', '200', 'content', 'application/json', 'schema');
+
+        const pathParams = singleApi.parameters.filter((p) => p.in == 'path');
+        const queryParams = singleApi.parameters.filter((p) => p.in == 'query');
+        const headerParams = singleApi.parameters.filter((p) => p.in == 'header');
+        const formDataParams = singleApi.parameters.filter((p) => p.in == 'formData');
+
+        // Swagger 2.0 support
+        if(!bodySchema.type){
+            const bodyParams = singleApi.parameters.filter((p) => p.in == 'body');
+            if(bodyParams.length > 0){
+                bodySchema = bodyParams[0];
+            }            
+        }
+
+        // Swagger 2.0 support
+        if(!bodyResponse.type){
+            const responses = singleApi.responses;
+            const response200 = responses['200'];
+            if(response200){
+                bodyResponse = response200;
+            }
+        }
+        console.log('endpoint :', endpoint);
+
         // console.log('bodySchema :', JSON.stringify(bodySchema));
         // let parameters = getPropertySecure(singleApi, 'parameters');
         let requestExamples = getRequestExamples(singleApi);
@@ -145,13 +185,18 @@ function parseApi(apiRoot, endpoint) {
             endpoint: endpoint,
             method: method,
             summary: singleApi.summary,
-            operationId: api.operationId,
+            depercated: singleApi.deprecated,
+            operationId: singleApi.operationId,
             description: singleApi.description,
             tags: singleApi.tags,
             requestSchema: parseSchema(bodySchema), //|| getBodySchemaFromParameters(parameters),
             responseSchema: parseSchema(bodyResponse),
             requestExamples: requestExamples,
-            responseExamples: responseExamples
+            responseExamples: responseExamples,
+            pathParams,
+            queryParams,
+            headerParams,
+            formDataParams
         }
 
         apisParsed.push(dest);

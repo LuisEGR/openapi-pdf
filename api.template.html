@@ -1,4 +1,5 @@
-<h2 class="title-api">{{summary}}</h2>
+<!-- <pre>{{json this}}</pre> -->
+<h2 class="title-api"><b>{{operationId}}</b> - {{summary}} {{#if depercated}} <b>Depercated</b> {{/if}}</h2>
 <br>
 <p class="endpoint-api">
     <span>{{method}}</span>
@@ -7,7 +8,94 @@
 <p>{{{description}}}</p>
 
 
-<h3>Request Schema</h3>
+{{#if pathParams}}
+
+    <h3>Path params</h3>
+    <table class="definition-response">
+        <thead>
+            <tr>
+                <th>Field</th>
+                <th>Type</th>
+                <th>Req.</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each pathParams}}
+                <tr>
+                    <td>{{name}}</td>
+                    <td>{{type}}</td>
+                    <td>{{required this.required}}</td>
+                    <td>{{description}}</td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+{{/if}}
+
+
+
+{{#if queryParams}}
+
+    <h3>Query params</h3>
+    <table class="definition-response">
+        <thead>
+            <tr>
+                <th>Field</th>
+                <th>Type</th>
+                <th>Req.</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each queryParams}}
+                <tr>
+                    <td>{{name}}</td>
+                    <td>{{type}}</td>
+                    <td>{{required this.required}}</td>
+                    <td>{{description}}</td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+{{/if}}
+
+
+{{#if formDataParams}}
+
+    <h3>FormData params</h3>
+    <table class="definition-response">
+        <thead>
+            <tr>
+                <th>Field</th>
+                <th>Type</th>
+                <th>Req.</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each formDataParams}}
+                <tr>
+                    <td>{{name}}</td>
+                    <td>{{type}}</td>
+                    <td>{{required this.required}}</td>
+                    <td>{{description}}</td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+{{/if}}
+
+
+
+
+{{#if requestSchema}}
+<h3>Request Schema ({{requestSchema.type}})</h3>
+<!-- <pre>{{json requestSchema}}</pre> -->
+
 <table class="definition-response">
     <thead>
         <tr>
@@ -20,7 +108,7 @@
     <tbody>
         {{#each requestSchema.properties.parsed}}
         <tr>
-            <td>{{this.title}}</td>
+            <td>{{this.title}} </td>
             <td>{{this.type}}</td>
             <td>{{required this.required}}</td>
             <td>{{{this.description}}}</td>
@@ -60,9 +148,12 @@
 </table>
 {{/if}}
 
+{{/if}}
 
 
-<h3>Response Schema</h3>
+
+{{#if responseSchema}}
+<h3>Response Schema ({{responseSchema.type}})</h3>
 <table class="definition-response">
     <thead>
         <tr>
@@ -116,6 +207,8 @@
 </table>
 {{/if}}
 
+{{/if}}
+
 {{#if requestExamples.length}}
 <div class="example">
 
@@ -141,3 +234,6 @@
 </div>
 
 {{/if}}
+
+
+<br><br><br><br><br><br><br>
